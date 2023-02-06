@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
+  m_Name: tile_DemoTumbleweed
+  m_EditorClassIdentifier: 
+  m_DefaultSprite: {fileID: 7482667652216324306, guid: 9f35b997697e3a54c8bdbcad0a890b87,
+    type: 3}
+  m_DefaultGameObject: {fileID: 264724201439966485, guid: 7510c451a33427c4ba0b52d46500e3ac,
+    type: 3}
+  m_DefaultColliderType: 1
+  m_TilingRules: []
