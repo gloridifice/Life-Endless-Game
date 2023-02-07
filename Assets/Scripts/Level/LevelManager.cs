@@ -405,6 +405,7 @@ namespace GGJ2023.Level
         public void Win()
         {
             //audioSource.Play();
+            AudioManager.Instance.Play("effect", "win");
             isWon = true;
             controlAble = false;
             uiManager.OnWin();
