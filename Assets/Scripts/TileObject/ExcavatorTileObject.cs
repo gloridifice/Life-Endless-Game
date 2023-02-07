@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace GGJ2023.TileObject
 {
-    public class ExcavatorTileObject : TileObject
+    public class ExcavatorTileObject : DirectionalTileObject
     {
-        public DirectionType moveDirection;
         public override void OnRoundExecute(LevelManager levelManager)
         {
             if (!CanMoveTo(levelManager, CellPos + DirectionTypeUtils.GetVectorFromDirection(moveDirection)))

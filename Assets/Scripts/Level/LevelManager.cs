@@ -16,7 +16,6 @@ namespace GGJ2023.Level
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager Instance { get; private set; }
-        public AudioSource audioSource;
 
         public Grid grid;
         public Tilemap mapTilemap;
@@ -154,7 +153,7 @@ namespace GGJ2023.Level
 
         private KeyCode keyBuffer;
         private float keyBufferCountDown;
-        private float keyBufferDuration = 3f;
+        private float keyBufferDuration = 1.5f;
 
         private KeyCode[] usedKeyCode = 
         {
@@ -266,6 +265,7 @@ namespace GGJ2023.Level
             if (stateinfo.IsName("sow") && (stateinfo.normalizedTime > 0.95f))
             {
                 AddTileObject(pos, treeType);
+                UpdateTileObjectMap();
                 controlAble = true;
             }
             else
