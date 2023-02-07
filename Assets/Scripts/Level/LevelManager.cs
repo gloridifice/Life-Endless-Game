@@ -215,7 +215,10 @@ namespace GGJ2023.Level
                     if (!Player.CanMoveTo(this, Player.GetMoveToPos()))
                     {
                         //todo 提醒玩家不能向水中移动
-                        return;
+
+                        //如果是防火墙，可以卡
+                        if(!this.HasTileType(Player.GetMoveToPos(), TileObjectsReferences.wall))
+                            return;
                     }
                     NextRound();
                 }

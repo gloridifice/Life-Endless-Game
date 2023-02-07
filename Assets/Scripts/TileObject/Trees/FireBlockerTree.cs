@@ -1,5 +1,6 @@
 using GGJ2023.Level;
 using UnityEngine;
+using GGJ2023.Audio;
 using System.Collections.Generic;
 
 namespace GGJ2023.TileObject
@@ -25,6 +26,7 @@ namespace GGJ2023.TileObject
             if (levelManager.Neighbour4TilesHasType(CellPos, TileObjectsReferences.fire))
             {
                 //animator.SetTrigger("blockfire");
+                AudioManager.Instance.Play("effect", "fireblockertree");
                 animator.SetBool("blockfire", true);
             }
             else
