@@ -20,7 +20,7 @@ namespace GGJ2023.TileObject
             if (levelManager.windDirection == DirectionType.Left) scale.x = Mathf.Abs(scale.x);
             transform.localScale = scale;
             
-            if (WillBumpedIntoAnimal(levelManager))
+            if (WillBumpedIntoDangerObj(levelManager))
             {
                 Die(levelManager);
                 return;
@@ -46,7 +46,7 @@ namespace GGJ2023.TileObject
             levelManager.AddTileObject(CellPos, TileObjectsReferences.flower);
         }
 
-        bool WillBumpedIntoAnimal(LevelManager levelManager)
+        bool WillBumpedIntoDangerObj(LevelManager levelManager)
         {
             if (levelManager.HasAndGetNeighbour4Tiles(CellPos, out Dictionary<DirectionType, TileObject[]> list))
             {
@@ -54,12 +54,12 @@ namespace GGJ2023.TileObject
                 {
                     foreach (TileObject tileObject in objects.Value)
                     {
-                        //是动物且风向和动物的方向一致
-                        if (tileObject.Is(TileObjectsReferences.animalBack) &&
+                        //是动物或挖掘机且风向和动物的方向一致
+                        if ((tileObject.Is(TileObjectsReferences.animalBack) || tileObject.Is(TileObjectsReferences.excavatorBack)) &&
                             objects.Key == levelManager.windDirection)
                         {
-                            AnimalTileObject o = (AnimalTileObject)tileObject;
-                            //玩家移动方向和动物移动方向对立
+                            DirectionalTileObject o = (DirectionalTileObject)tileObject;
+                            //玩家移动方向和对方移动方向对立
                             if (o.moveDirection == DirectionTypeUtils.GetOpposite(levelManager.windDirection))
                             {
                                 return true;

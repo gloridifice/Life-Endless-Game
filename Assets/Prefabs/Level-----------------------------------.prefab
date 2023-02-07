@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1854818771}
   - component: {fileID: 1854818770}
   - component: {fileID: 1854818772}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 5946525955709223833}
   - component: {fileID: 5946525955709223832}
   - component: {fileID: 5946525955709223835}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,7 +921,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5946525956341231693}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Scene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -963,6 +963,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: fd47c785ea370ed41b889307dfce6025, type: 3}
       propertyPath: m_Name
       value: TFF_Rock_Medium_06A
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fd47c785ea370ed41b889307dfce6025, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fd47c785ea370ed41b889307dfce6025, type: 3}
       propertyPath: m_RootOrder
@@ -1027,6 +1031,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Rock_Large_02A
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d78a7d5a257d51a4094232ead4f2f5e8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d78a7d5a257d51a4094232ead4f2f5e8, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1089,6 +1097,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 084aacf86c9aa6c45a58bd1af4434897, type: 3}
       propertyPath: m_Name
       value: TFF_Rock_Medium_03A
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 084aacf86c9aa6c45a58bd1af4434897, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 084aacf86c9aa6c45a58bd1af4434897, type: 3}
       propertyPath: m_RootOrder
@@ -1165,6 +1177,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Rock_Large_03A
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 27c026a5ad3f2fc41ac31beeaf223e66, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 27c026a5ad3f2fc41ac31beeaf223e66, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1227,6 +1243,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 5e6ae821bb33ce64298c9e758715e5ab, type: 3}
       propertyPath: m_Name
       value: TFF_Rock_Medium_07A
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e6ae821bb33ce64298c9e758715e5ab, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 5e6ae821bb33ce64298c9e758715e5ab, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e6ae821bb33ce64298c9e758715e5ab, type: 3}
       propertyPath: m_RootOrder
@@ -1291,6 +1315,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Rock_Large_05A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 814a7a3f7031b764e80fe4a9dfca7023, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 814a7a3f7031b764e80fe4a9dfca7023, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1354,6 +1382,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TFF_Rock_Medium_02A
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f9987932e4772ae4fa1d4619f055480c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f9987932e4772ae4fa1d4619f055480c, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1416,6 +1448,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 814a7a3f7031b764e80fe4a9dfca7023, type: 3}
       propertyPath: m_Name
       value: TFF_Rock_Large_05A
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 814a7a3f7031b764e80fe4a9dfca7023, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 814a7a3f7031b764e80fe4a9dfca7023, type: 3}
       propertyPath: m_RootOrder
