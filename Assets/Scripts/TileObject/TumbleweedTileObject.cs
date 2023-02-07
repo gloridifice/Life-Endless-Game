@@ -29,12 +29,17 @@ namespace GGJ2023.TileObject
 
             levelManager.AddAnimation(new AnimatorTimedAnim(animator, "roll", 0.14f));     //播放翻滚动画
 
-            if (CanMoveTo(levelManager, CellPos + direction))
+            if (CanMoveTo(levelManager, GetMoveToPos()))
             {
                 Move(direction);
             }
         }
 
+        public Vector3Int GetMoveToPos()
+        {
+            Vector3Int direction = DirectionTypeUtils.GetVectorFromDirection(LevelManager.Instance.windDirection);
+            return CellPos + direction;
+        }
         public override void OnRoundEnd(LevelManager levelManager)
         {
             base.OnRoundEnd(levelManager);

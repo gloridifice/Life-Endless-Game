@@ -192,27 +192,34 @@ namespace GGJ2023.Level
                 if (keyCode == KeyCode.W)
                 {
                     windDirection = DirectionType.Forward;
-                    NextRound();
                 }
 
                 if (keyCode == KeyCode.A)
                 {
                     windDirection = DirectionType.Left;
-                    NextRound();
                 }
 
                 if (keyCode == KeyCode.S)
                 {
                     windDirection = DirectionType.Back;
-                    NextRound();
                 }
 
                 if (keyCode == KeyCode.D)
                 {
                     windDirection = DirectionType.Right;
-                    NextRound();
                 }
 
+                if (keyCode == KeyCode.D || keyCode == KeyCode.A || keyCode == KeyCode.W || keyCode == KeyCode.S)
+                {
+                    //不能卡墙移动
+                    if (!Player.CanMoveTo(this, Player.GetMoveToPos()))
+                    {
+                        //todo 提醒玩家不能向水中移动
+                        return;
+                    }
+                    NextRound();
+                }
+                
                 if (keyCode == KeyCode.J)
                 {
                     SownAt(Player.CellPos, TileObjectsReferences.extinguishingTree);
