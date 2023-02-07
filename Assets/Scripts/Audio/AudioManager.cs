@@ -5,57 +5,45 @@ using Random = UnityEngine.Random;
 
 namespace GGJ2023.Audio
 {
+    [RequireComponent(typeof(AudioPool))]
     public class AudioManager : MonoBehaviour
     {
-        [Range(0,1)]
-        public float bgmVolume;
-        [Range(0,1)]
-        public float effectVolume;
-        
-        [Header("BGM")]
-        public AudioSource bgmSource;
-        public List<AudioClip> bgmClips;
-        
-        [Header("Wind")]
-        public AudioSource windSource;
-        public List<AudioClip> windClips;
-        
-        
+        private AudioPool audioPool;
+        public AudioRootDatabaseObject rootDatabase;
 
-        public static AudioManager instance;
+        public static AudioManager Instance { get; private set; }
+
+        private void OnEnable()
+        {
+            rootDatabase.Init();
+            audioPool = GetComponent<AudioPool>();
+        }
 
         private void Awake()
         {
-            if (instance == null)
+            if (Instance == null)
             {
-                instance = this;
+                Instance = this;
                 DontDestroyOnLoad(this);
             }
-            if (instance != this)
+            if (Instance != this)
             {
                 Destroy(this);
             }
 
-            bgmSource.volume = bgmVolume;
-            windSource.volume = effectVolume - 0.1f;
         }
 
-        private void Update()
+        public void Play(string dbName, string aName)
         {
-            if (!bgmSource.isPlaying)
-            {
-                bgmSource.clip = bgmClips[Random.Range(0, bgmClips.Count)];
-                bgmSource.Play();
-            }
-        }
-
-        public void PlayWindSound()
-        {
-            if (!windSource.isPlaying)
-            {
-                windSource.clip = windClips[Random.Range(0, windClips.Count)];
-                windSource.Play();
-            }
+            AudioDatabaseObject database = rootDatabase.GetDatabase(dbName);
+            AudioGroupData groupData = database.GetGroup(aName);
+            AudioData audioData = groupData.GetNextAudioData();
+            float volume = database.volume * groupData.groupVolume * audioData.volume;
+            float pitch = database.volume * groupData.groupVolume * audioData.pitch;
+            bool loop = groupData.groupLoop;
+            
+            AudioPlayData playData = new AudioPlayData.Builder().Volume(volume).Pitch(pitch).Loop(loop).build();
+            audioPool.PutAudio(audioData.audioClip, playData);
         }
     }
 }

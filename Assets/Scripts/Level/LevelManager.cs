@@ -15,6 +15,7 @@ namespace GGJ2023.Level
 {
     public class LevelManager : MonoBehaviour
     {
+        public static LevelManager Instance { get; private set; }
         public AudioSource audioSource;
 
         public Grid grid;
@@ -102,11 +103,11 @@ namespace GGJ2023.Level
 
         [HideInInspector] public bool isWon;
 
-        private void Start()
+        private void Awake()
         {
-            InitLevel();
+            Instance = this;
+            controlAble = false; //等待场景加载完成才可以控制
         }
-        
         private void OnDisable()
         {
             RemoveActions();
@@ -119,6 +120,7 @@ namespace GGJ2023.Level
 
         public void InitLevel()
         {
+            controlAble = true;
             LoadWindAssets();
             onRoundExecute = (level) => { };
             onRoundEnd = (level) => { };
@@ -130,6 +132,13 @@ namespace GGJ2023.Level
             seedsCounts.Add(TileObjectsReferences.madWillow, seedMadWillow);
             AddActions();
             UIManager.InitUI(this);
+            foreach (Transform trans in objectTilemap.transform)
+            {
+                if (trans.TryGetComponent(out TileObject.TileObject tileObject))
+                {
+                    tileObject.Init();
+                }
+            }
         }
 
         private void Update()
@@ -294,7 +303,7 @@ namespace GGJ2023.Level
         }
         public void ProcessWind()
         {
-            float r = 0;
+            float r = 0; 
             switch (windDirection)
             {
                 case DirectionType.Right: r = 90; break;
@@ -303,7 +312,7 @@ namespace GGJ2023.Level
             }
             ProcessSmallWind(r);
             ProcessBigWind(r);
-            AudioManager.instance.PlayWindSound();
+            AudioManager.Instance.Play("effect", "wind");
         }
 
         public void ProcessSmallWind(float rotation = 0)
@@ -325,7 +334,7 @@ namespace GGJ2023.Level
 
         public List<TimedAnim> timedAnims;
         [HideInInspector]
-        public bool controlAble = true;
+        public bool controlAble = false;
         public void AddAnimation(TimedAnim anim)
         {
             timedAnims.Add(anim);

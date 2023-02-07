@@ -74,11 +74,7 @@ namespace GGJ2023.TileObject
                 Debug.LogError("Tile Object registryName is NULL!");
             }
         }
-
-        public virtual void Start()
-        {
-            Init();
-        }
+        
 
         public virtual void Init()
         {

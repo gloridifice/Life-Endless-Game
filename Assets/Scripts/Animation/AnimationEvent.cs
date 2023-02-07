@@ -25,7 +25,7 @@ public class AnimationEvent : MonoBehaviour
     public AudioClip excavatorAttackAudio;
     public AudioClip excavatorDieAudio;
 
-    //摧毁物体
+    //???????
     public void Damage()
     {
         Destroy(gameObject.transform.parent.gameObject);
@@ -33,87 +33,87 @@ public class AnimationEvent : MonoBehaviour
 
     private void Start()
     {
-        audioSource.volume = AudioManager.instance.effectVolume;
+        
     }
 
-    //播放风滚草移动音效
+    //?????????????Ч
     public void PlayTumbleweedMoveAudio()
     {
         audioSource.clip = tumbleweedMoveAudio;
         audioSource.Play();
     }
 
-    //播放风滚草播种音效
+    //?????????????Ч
     public void PlayTumbleweedSowAudio()
     {
         audioSource.clip = tumbleweedSowAudio;
         audioSource.Play();
     }
 
-    //播放风滚草死亡音效
+    //??????????????Ч
     public void PlayTumbleweedDieAudio()
     {
         audioSource.clip = tumbleweedDieAudio;
         audioSource.Play();
     }
 
-    //播放植物生长音效
+    //?????????????Ч
     public void PlayPlantGrowAudioAudio()
     {
         audioSource.clip = plantGrowAudio;
         audioSource.Play();
     }
 
-    //播放植物死亡音效
+    //?????????????Ч
     public void PlayPlantDieAudioAudio()
     {
         audioSource.clip = plantDieAudio;
         audioSource.Play();
     }
 
-    //播放打人柳音效
+    //???????????Ч
     public void PlayMadWillowAudioAudio()
     {
         audioSource.clip = madWillowAudio;
         audioSource.Play();
     }
 
-    //播放灭火树音效
+    //???????????Ч
     public void PlayExtinguishingTreeAudio()
     {
         audioSource.clip = extinguishingTreeAudio;
         audioSource.Play();
     }
 
-    //播放挡火树音效
+    //???????????Ч
     public void PlayFireBlockerTreeAudio()
     {
         audioSource.clip = fireBlockerTreeAudio;
         audioSource.Play();
     }
 
-    //播放动物攻击音效
+    //??????﹥????Ч
     public void PlayAnimalAttackAudio()
     {
         audioSource.clip = animalAttackAudio;
         audioSource.Play();
     }
 
-    //播放动物死亡音效
+    //?????????????Ч
     public void PlayAnimalDieAudio()
     {
         audioSource.clip = animalDieAudio;
         audioSource.Play();
     }
 
-    //播放挖掘机攻击音效
+    //??????????????Ч
     public void PlayExcavatorAttackAudio()
     {
         audioSource.clip = excavatorAttackAudio;
         audioSource.Play();
     }
 
-    //播放挖掘机死亡音效
+    //??????????????Ч
     public void PlayExcavatorDieAudio()
     {
         audioSource.clip = excavatorDieAudio;

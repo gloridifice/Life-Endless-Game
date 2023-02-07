@@ -24,7 +24,6 @@ namespace GGJ2023.TileObject
         {
             base.Init();
             UpdateExterior();
-            audioSource.volume = AudioManager.instance.effectVolume;
         }
 
         /// <summary>

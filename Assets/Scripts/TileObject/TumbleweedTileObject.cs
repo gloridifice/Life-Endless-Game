@@ -11,16 +11,7 @@ namespace GGJ2023.TileObject
         public override void Init()
         {
             base.Init();
-
-            Invoke("AddFlower", 0.1f);
-        }
-        void AddFlower()
-        {
-            if (TileObjectsReferences.flower.prefab != null)
-            {
-                LevelManager levelManager = transform.GetComponentInParent<LevelManager>();
-                levelManager.AddTileObject(CellPos, TileObjectsReferences.flower);
-            }
+            LevelManager.Instance.AddTileObject(CellPos, TileObjectsReferences.flower);
         }
         public override void OnRoundExecute(LevelManager levelManager)
         {
@@ -41,8 +32,13 @@ namespace GGJ2023.TileObject
             if (CanMoveTo(levelManager, CellPos + direction))
             {
                 Move(direction);
-                levelManager.AddTileObject(CellPos, TileObjectsReferences.flower);
             }
+        }
+
+        public override void OnRoundEnd(LevelManager levelManager)
+        {
+            base.OnRoundEnd(levelManager);
+            levelManager.AddTileObject(CellPos, TileObjectsReferences.flower);
         }
 
         bool WillBumpedIntoAnimal(LevelManager levelManager)

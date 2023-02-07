@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using GGJ2023.Level;
 using GGJ2023.TileObject;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,10 +25,12 @@ namespace GGJ2023
             }
         }
         public static GameManager instance;
-        public static bool assetsLoaded = false;
+        public bool assetsLoaded = false;
         public static Dictionary<string, RegistryTileObject> registryTileObjects;
         public Action onAssetsLoaded = () => {};
+        public List<AssetReference> assetsToLoad;
 
+        [HideInInspector]
         public Material witheredSpriteMaterial;
 
         private AssetReference witheredSprMatReference =
@@ -50,12 +53,86 @@ namespace GGJ2023
             }
             if (!assetsLoaded)
             {
-                LoadAssets();
+                assetsToLoad = new List<AssetReference>();
+                LoadTileObjectAssets();
+            }
+
+            SceneManager.activeSceneChanged += OnSceneChanged;
+        }
+
+        public void OnSceneChanged(Scene last, Scene current)
+        {
+            TryInitLevel();
+        }
+
+        public void TryInitLevel()
+        {
+            if (LevelManager.Instance != null && assetsLoaded)
+            {
+                LevelManager.Instance.InitLevel();
+                Debug.Log("Level Init!");
             }
         }
 
+        #region Assets
+        public bool IsAssetsLoaded()
+        {
+            if (assetsToLoad == null)
+            {
+                return false;
+            }
+            foreach (var asset in assetsToLoad)
+            {
+                if (!asset.IsDone)
+                {
+                    return false;
+                }
+            }
+            foreach (var pair in registryTileObjects)
+            {
+                if (pair.Value.prefab == null)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        private void OnAssetsLoaded()
+        {
+            TryInitLevel();
+            Debug.Log("Assets Loaded!");
+        }
+        private async void LoadTileObjectAssets()
+        {
+            FieldInfo[] infos = typeof(TileObjectsReferences).GetFields();
+            foreach (var info in infos)
+            {
+                object value = info.GetValue(null);
+                if (value is RegistryTileObject registry)
+                {
+                    assetsToLoad.Add(registry.assetReference);
+                    registry.LoadPrefab();
+                    if(!registryTileObjects.ContainsKey(registry.registryName)) registryTileObjects.Add(registry.registryName, registry);
+                }
+            }
+            witheredSpriteMaterial = await witheredSprMatReference.LoadAssetAsync<Material>().Task;
+            assetsToLoad.Add(witheredSprMatReference);
+        }
+        
+        #endregion
+
         private void Update()
         {
+            if (!assetsLoaded)
+            {
+                if (IsAssetsLoaded())
+                {
+                    assetsLoaded = true;
+                    OnAssetsLoaded();
+                }
+            }
+
             //todo 退出到主菜单
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -68,25 +145,11 @@ namespace GGJ2023
             }
         }
 
+
+
         public void ReloadCurrentScene()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        private async void LoadAssets()
-        {
-            FieldInfo[] infos = typeof(TileObjectsReferences).GetFields();
-            foreach (var info in infos)
-            {
-                object value = info.GetValue(null);
-                if (value is RegistryTileObject registry)
-                {
-                    registry.LoadPrefab();
-                    if(!registryTileObjects.ContainsKey(registry.registryName)) registryTileObjects.Add(registry.registryName, registry);
-                }
-            }
-            witheredSpriteMaterial = await witheredSprMatReference.LoadAssetAsync<Material>().Task;
-            assetsLoaded = true;
         }
 
         public void LoadLevel(int level)
