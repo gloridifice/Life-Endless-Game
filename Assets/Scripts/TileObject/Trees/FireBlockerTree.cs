@@ -26,7 +26,8 @@ namespace GGJ2023.TileObject
             if (levelManager.Neighbour4TilesHasType(CellPos, TileObjectsReferences.fire))
             {
                 //animator.SetTrigger("blockfire");
-                AudioManager.Instance.Play("effect", "fireblockertree");
+                //AudioManager.Instance.Play("effect", "fireblockertree");
+                AnimationEvent.canPlayfireBlockerTreeAudio = true;
                 animator.SetBool("blockfire", true);
             }
             else

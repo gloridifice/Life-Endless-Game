@@ -25,6 +25,8 @@ public class AnimationEvent : MonoBehaviour
     public AudioClip excavatorAttackAudio;
     public AudioClip excavatorDieAudio;
 
+    public static bool canPlayfireBlockerTreeAudio = false;
+
     //???????
     public void Damage()
     {
@@ -88,8 +90,12 @@ public class AnimationEvent : MonoBehaviour
     //???????????งน
     public void PlayFireBlockerTreeAudio()
     {
-        audioSource.clip = fireBlockerTreeAudio;
-        audioSource.Play();
+        if(canPlayfireBlockerTreeAudio)
+        {
+            audioSource.clip = fireBlockerTreeAudio;
+            audioSource.Play();
+            canPlayfireBlockerTreeAudio = false;
+        }
     }
 
     //??????ฉ????งน
