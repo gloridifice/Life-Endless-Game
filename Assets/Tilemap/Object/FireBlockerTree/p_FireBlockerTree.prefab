@@ -273,7 +273,8 @@ MonoBehaviour:
   plantDieAudio: {fileID: 8300000, guid: 838a775a6f4dd374686074da89780a7d, type: 3}
   madWillowAudio: {fileID: 0}
   extinguishingTreeAudio: {fileID: 0}
-  fireBlockerTreeAudio: {fileID: 0}
+  fireBlockerTreeAudio: {fileID: 8300000, guid: cb722d59361043f4aacbffbb87103bb7,
+    type: 3}
   animalAttackAudio: {fileID: 0}
   animalDieAudio: {fileID: 0}
   excavatorAttackAudio: {fileID: 0}

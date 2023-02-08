@@ -43,7 +43,8 @@ namespace GGJ2023.TileObject
             base.OnRoundExecute(levelManager);
             if (IsMature)
             {
-                audioSource.Play();
+                //audioSource.Play();
+                AudioManager.Instance.Play("effect", "fire");
                 Vector3Int newFirePos = DirectionTypeUtils.GetVectorFromDirection(levelManager.windDirection) + CellPos;
                 levelManager.AddTileObject(newFirePos, TileObjectsReferences.fire);
             }
