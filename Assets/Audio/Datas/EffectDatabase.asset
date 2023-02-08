@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: EffectDatabase
   m_EditorClassIdentifier: 
   name: effect
-  volume: 1
-  patch: 1
+  volume: 0.5
+  pitch: 1
   groups:
   - groupName: wind
-    groupVolume: 1
+    groupVolume: 0.5
     groupPitch: 1
     groupLoop: 0
     groupPlayMode: 1
@@ -34,7 +34,7 @@ MonoBehaviour:
     - volume: 1
       pitch: 1
       audioClip: {fileID: 8300000, guid: 1040fb2d9addcb64b947ba72f94d244d, type: 3}
-    lastPlayIndex: 0
+    lastPlayIndex: 2
   - groupName: fire_blocker_tree
     groupVolume: 1
     groupPitch: 1
@@ -187,18 +187,18 @@ MonoBehaviour:
     lastPlayIndex: 1
   groupNames:
   - wind
-  - fireblockertree
-  - extinguishingtree
-  - madwillow
-  - tumbleweedmove
-  - tumbleweedsow
-  - tumbleweeddie
-  - plantgrow
-  - plantdie
-  - animalattack
-  - animaldie
-  - excavatorattack
-  - excavatordie
+  - fire_blocker_tree
+  - extinguishing_tree
+  - mad_willow
+  - tumbleweed_move
+  - tumbleweed_sow
+  - tumbleweed_die
+  - plant_grow
+  - plant_die
+  - animal_attack
+  - animal_die
+  - excavator_attack
+  - excavator_die
   - fire
   - win
   - click

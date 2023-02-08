@@ -7,27 +7,28 @@ namespace GGJ2023.Audio
     public class AudioRootDatabaseObject : ScriptableObject
     {
         [HideInInspector]
-        public List<string> databaseNames;
+        public Dictionary<string, AudioDatabaseObject> databaseDictionary;
         public List<AudioDatabaseObject> databaseObjects;
 
         public void Init()
         {
+            databaseDictionary = new Dictionary<string, AudioDatabaseObject>();
             for (int i = 0; i < databaseObjects.Count; i++)
             {
-                databaseNames.Add(databaseObjects[i].name);
+                databaseDictionary.Add(databaseObjects[i].name, databaseObjects[i]);
                 databaseObjects[i].Init();
             }
         }
 
         public bool CheckDatabase(string databaseName)
         {
-            return databaseNames.Contains(databaseName);
+            return databaseDictionary.ContainsKey(databaseName);
         }
         public AudioDatabaseObject GetDatabase(string databaseName)
         {
             if (CheckDatabase(databaseName))
             {
-                return databaseObjects[databaseNames.IndexOf(databaseName)];
+                return databaseDictionary[databaseName];
             }
 
             return null;
