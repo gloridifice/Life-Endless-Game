@@ -16,8 +16,10 @@ Shader "UI/UITest"
         [Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip ("Use Alpha Clip", Float) = 0
         
         _Alpha ("Alpha", Range(0,1)) = 1.
-        _Step ("Step", Range(0,1)) = 1.
+        _StepOut ("Step Out", Range(0,1)) = 1.
+        _StepIn ("Step In", Range(0,1)) = 1.
         _MainColor ("Main Color", Color) = (0,0,0,1)
+        _Amount ("Amount", Float) = 1.
     }
 
     SubShader
@@ -84,7 +86,9 @@ Shader "UI/UITest"
             float4 _ClipRect;
             float4 _MainTex_ST;
             float _Alpha;
-            float _Step;
+            float _StepOut;
+            float _StepIn;
+            float _Amount;
             float4 _MainColor;
 
             v2f vert(appdata_t v)
@@ -103,6 +107,7 @@ Shader "UI/UITest"
 
             fixed4 frag(v2f IN) : SV_Target
             {
+               
                 half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
 
                 #ifdef UNITY_UI_CLIP_RECT
@@ -113,8 +118,16 @@ Shader "UI/UITest"
                 clip (color.a - 0.001);
                 #endif
 
+                float aspect = _ScreenParams.x / _ScreenParams.y;
+                float2 center = float2(.5 * aspect,.5);
+                float2 coord = IN.texcoord;
+                coord.x *= aspect;
+                float distance = length(coord - center);
+                distance = clamp(distance,0,1);
+                float flooredDist = floor(distance * _Amount + 0.01f)/_Amount;
                 color = _MainColor;
-                color.a = step(_Step, IN.texcoord.x);
+                color.a = step(distance, 1 - _StepOut);
+                color.a *= step(1 - _StepIn, distance);
                 
                 return color;
             }
