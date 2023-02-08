@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -34,7 +35,7 @@ namespace GGJ2023.Audio
             audioPool = GetComponent<AudioPool>();
         }
 
-        public void Play(string dbName, string aName)
+        public AudioData Play(string dbName, string aName)
         {
             AudioDatabaseObject database = rootDatabase.GetDatabase(dbName);
             AudioGroupData groupData = database.GetGroup(aName);
@@ -45,6 +46,13 @@ namespace GGJ2023.Audio
             
             AudioPlayData playData = new AudioPlayData.Builder().Volume(volume).Pitch(pitch).Loop(loop).build();
             audioPool.PutAudio(audioData.audioClip, playData);
+            return audioData;
+        }
+
+        public IEnumerator WaitForSourceComplete(SoundSource source, float time)
+        {
+            yield return new WaitForSeconds(time);
+            source.isPlaying = false;
         }
     }
 }
