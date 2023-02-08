@@ -59,8 +59,20 @@ namespace GGJ2023.TileObject
         {
             bool flag = true;
             flag = flag && !levelManager.HasTileType(pos, TileObjectsReferences.fire);
-            flag = flag && !levelManager.HasTileType(pos, TileObjectsReferences.fireBlockerTree);
             flag = flag && !levelManager.HasTileType(pos, TileObjectsReferences.wall);
+
+            //挡火树
+            if (levelManager.HasAndGetTileObject(pos, out TileObject[] tileObjects))
+            {
+                foreach (var tileObject in tileObjects)
+                {
+                    if (tileObject.Is(TileObjectsReferences.fireBlockerTree))
+                    {
+                        TreeTileObject treeTileObject = tileObject as TreeTileObject;
+                        flag = flag && !treeTileObject.IsMature;
+                    }
+                }
+            }
             //不能蔓延到水源上
             if (levelManager.HasAndGetMapTile(pos, out MapTile.MapTile tile))
             {
