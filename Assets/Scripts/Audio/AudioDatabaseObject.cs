@@ -9,31 +9,29 @@ namespace GGJ2023.Audio
     {
         public string name;
         public float volume = 1;
-        public float patch = 1;
+        public float pitch = 1;
         public List<AudioGroupData> groups;
-        [HideInInspector] public List<string> groupNames;
+        [HideInInspector] public Dictionary<string, AudioGroupData> groupDictionary;
 
         public void Init()
         {
-            groupNames = new List<string>();
+            groupDictionary = new Dictionary<string, AudioGroupData>();
             for (int i = 0; i < groups.Count; i++)
             {
-                groupNames.Add(groups[i].groupName);
+                groupDictionary.Add(groups[i].groupName, groups[i]);
             }
         }
 
         public bool CheckGroup(string groupName)
         {
-            return groupNames.Contains(groupName);
+            return groupDictionary.ContainsKey(groupName);
         }
         public AudioGroupData GetGroup(string groupName)
         {
             if (CheckGroup(groupName))
             {
-                int index = groupName.IndexOf(groupName);
-                return groups[index];
+                return groupDictionary[groupName];
             }
-
             return null;
         }
     }

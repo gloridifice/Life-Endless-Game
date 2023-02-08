@@ -15,10 +15,10 @@ namespace GGJ2023.Audio
 
         private void OnEnable()
         {
-            rootDatabase.Init();
-            audioPool = GetComponent<AudioPool>();
+  
         }
 
+        
         private void Awake()
         {
             if (Instance == null)
@@ -30,7 +30,8 @@ namespace GGJ2023.Audio
             {
                 Destroy(this);
             }
-
+            rootDatabase.Init();
+            audioPool = GetComponent<AudioPool>();
         }
 
         public void Play(string dbName, string aName)
@@ -39,7 +40,7 @@ namespace GGJ2023.Audio
             AudioGroupData groupData = database.GetGroup(aName);
             AudioData audioData = groupData.GetNextAudioData();
             float volume = database.volume * groupData.groupVolume * audioData.volume;
-            float pitch = database.volume * groupData.groupVolume * audioData.pitch;
+            float pitch = database.pitch * groupData.groupPitch * audioData.pitch;
             bool loop = groupData.groupLoop;
             
             AudioPlayData playData = new AudioPlayData.Builder().Volume(volume).Pitch(pitch).Loop(loop).build();

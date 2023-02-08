@@ -18,7 +18,7 @@ namespace GGJ2023.UI
 
         private void Awake()
         {
-            textGroup.alpha = 1f;
+            textGroup.alpha = 0f;
             image.material.SetFloat("_StepIn",1f);
         }
 

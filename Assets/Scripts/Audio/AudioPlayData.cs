@@ -36,7 +36,7 @@ namespace GGJ2023.Audio
             }
             public Builder Pitch(float value)
             {
-                this.volume = value;
+                this.pitch = value;
                 return this;
             }
 
