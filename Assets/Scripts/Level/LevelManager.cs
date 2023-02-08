@@ -655,5 +655,12 @@ namespace GGJ2023.Level
         }
 
         #endregion
+
+        #region Sounds
+
+        public SoundSource fireSoundSource = new ("effect", "fire");
+        
+
+        #endregion
     }
 }
