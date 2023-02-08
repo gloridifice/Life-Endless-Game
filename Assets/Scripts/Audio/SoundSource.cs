@@ -18,6 +18,7 @@ namespace GGJ2023.Audio
             if (!isPlaying)
             {
                 AudioData data = AudioManager.Play(dbName, aName);
+                isPlaying = true;
                 AudioManager.StartCoroutine(AudioManager.WaitForSourceComplete(this, data.audioClip.length));
             }
         }

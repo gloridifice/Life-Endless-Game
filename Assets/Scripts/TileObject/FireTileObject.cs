@@ -9,9 +9,8 @@ namespace GGJ2023.TileObject
 {
     public class FireTileObject : TileObject
     {
-        public AudioSource audioSource;
-
         private int strength = 0;
+        public GameObject extinguishingEffectPrefab;
         
         /// <summary>
         /// 在 fireRound 的下一回合生成火苗
@@ -82,6 +81,12 @@ namespace GGJ2023.TileObject
                 }
             }
             return flag && base.CanBeAddedAt(levelManager, pos);
+        }
+
+        public override void Die(LevelManager levelManager, float delay = 0)
+        {
+            Instantiate(extinguishingEffectPrefab, Tilemap.layoutGrid.CellToWorld(CellPos), new Quaternion());
+            base.Die(levelManager, delay);
         }
     }
 }

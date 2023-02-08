@@ -14,12 +14,16 @@ namespace GGJ2023.Audio
 
         public static AudioManager Instance { get; private set; }
 
-        private void OnEnable()
+        private SoundSource bgmSoundSource = new ("bgm", "level");
+
+        private void Update()
         {
-  
+            if (!bgmSoundSource.isPlaying)
+            {
+                bgmSoundSource.Play();
+            }
         }
 
-        
         private void Awake()
         {
             if (Instance == null)
