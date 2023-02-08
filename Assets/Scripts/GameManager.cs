@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using GGJ2023.Level;
 using GGJ2023.TileObject;
+using GGJ2023.UI;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -146,17 +147,32 @@ namespace GGJ2023
         }
 
 
+        #region Transiton & Level
 
+        public GameObject transitionPrefab;
+
+        public void LoadScene(string sceneName)
+        {
+            GameObject transObj = Instantiate(transitionPrefab);
+            if (transObj.TryGetComponent(out Transition transition))
+            {
+                transition.TransitionOut();
+                transition.onTransitionOutComplete += () =>
+                {
+                    SceneManager.LoadScene(sceneName);
+                };
+            }
+        }
         public void ReloadCurrentScene()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            LoadScene(SceneManager.GetActiveScene().name);
         }
 
         public void LoadLevel(int level)
         {
             string levelIndex = String.Format("{0,18:000}", level);
-            string levelIndex1= levelIndex.Replace( " ", "" ); 
-            SceneManager.LoadScene("S" + levelIndex1);
+            string levelIndex1= levelIndex.Replace( " ", "" );
+            LoadScene("S" + levelIndex1);
         }
 
         public void ExitGame()
@@ -168,5 +184,7 @@ namespace GGJ2023
         {
             SceneManager.LoadScene(0);
         }
+
+        #endregion
     }
 }

@@ -33,6 +33,8 @@ namespace GGJ2023.Level
                 return uiManager;
             }
         }
+
+        public Transition transition;
         private Dictionary<Vector3Int, List<TileObject.TileObject>> currentObjectMap;
         public Dictionary<Vector3Int, List<TileObject.TileObject>> CurrentObjectMap
         {
@@ -95,6 +97,9 @@ namespace GGJ2023.Level
         [HideInInspector] public int flowerCount = 0;
         [HideInInspector] public DirectionType windDirection;
 
+        public int levelIndex;
+        public string levelName;
+        
         public int seedExtinguishingTree, seedFireBlocker, seedMadWillow;
         public int victoryFlowerAmount;
         [TextArea]
@@ -138,6 +143,8 @@ namespace GGJ2023.Level
                     tileObject.Init();
                 }
             }
+            transition.SetLevelInfo(levelIndex, levelName);
+            transition.TransitionIn();
         }
 
         private void Update()
@@ -388,7 +395,7 @@ namespace GGJ2023.Level
         }
         public void GameOver()
         {
-            GameManager.Instance.ReloadCurrentScene();
+            GameManager.Instance.LoadLevel(levelIndex);
             Debug.Log("Game Over!");
         }
 
