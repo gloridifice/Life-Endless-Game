@@ -33,5 +33,13 @@ namespace GGJ2023.TileObject
                 }
             }
         }
+
+        public override void OnRoundEnd(LevelManager levelManager)
+        {
+            if (!CanMoveTo(levelManager, CellPos + DirectionTypeUtils.GetVectorFromDirection(moveDirection)))
+            {
+                moveDirection = DirectionTypeUtils.GetOpposite(moveDirection);
+            }
+        }
     }
 }

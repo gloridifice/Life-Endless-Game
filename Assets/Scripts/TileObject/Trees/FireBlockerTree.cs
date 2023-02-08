@@ -7,6 +7,7 @@ namespace GGJ2023.TileObject
 {
     public class FireBlockerTree : TreeTileObject
     {
+        public AnimationEvent animationEvent;
         public override void OnTileCollide(LevelManager levelManager, TileObject[] others, Vector3Int pos)
         {
             
@@ -27,7 +28,7 @@ namespace GGJ2023.TileObject
             {
                 //animator.SetTrigger("blockfire");
                 //AudioManager.Instance.Play("effect", "fireblockertree");
-                AnimationEvent.canPlayfireBlockerTreeAudio = true;
+                animationEvent.canPlayfireBlockerTreeAudio = true;
                 animator.SetBool("blockfire", true);
             }
             else
