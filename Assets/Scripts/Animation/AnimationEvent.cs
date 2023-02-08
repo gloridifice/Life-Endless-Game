@@ -43,6 +43,7 @@ public class AnimationEvent : MonoBehaviour
     {
         audioSource.clip = tumbleweedMoveAudio;
         audioSource.Play();
+        //AudioManager.Instance.Play("effect", "tumbleweed_move");
     }
 
     //?????????????Ч
