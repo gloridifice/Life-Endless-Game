@@ -51,6 +51,7 @@ MonoBehaviour:
   registryName: fireBlockerTree
   age: 0
   maxAge: 3
+  animationEvent: {fileID: 6398421155287723214}
 --- !u!82 &1048646130638702178
 AudioSource:
   m_ObjectHideFlags: 0
@@ -279,3 +280,4 @@ MonoBehaviour:
   animalDieAudio: {fileID: 0}
   excavatorAttackAudio: {fileID: 0}
   excavatorDieAudio: {fileID: 0}
+  canPlayfireBlockerTreeAudio: 0
