@@ -180,6 +180,12 @@ MonoBehaviour:
   victoryFlowerAmount: 12
   enterText: "\u5173\u5361\u63D0\u793A"
   isWon: 0
+  smallWindPrefab: {fileID: 4930482247641080313, guid: 97eac8fa28efc0e4e83f60dbce33b50b,
+    type: 3}
+  bigWindPrefab: {fileID: 4894403995658990838, guid: 40cc8a1cc9da3c14490c0303ab0e76de,
+    type: 3}
+  leavesWithWindPrefab: {fileID: 5104026440488600572, guid: 57d954c29e8c9b9478df7dfece6bc5d8,
+    type: 3}
   controlAble: 1
 --- !u!1 &5946525955604539266
 GameObject:

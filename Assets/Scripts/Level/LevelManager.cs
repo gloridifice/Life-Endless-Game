@@ -125,7 +125,6 @@ namespace GGJ2023.Level
         public void InitLevel()
         {
             controlAble = true;
-            LoadWindAssets();
             onRoundExecute = (level) => { };
             onRoundEnd = (level) => { };
             roundCount = 0;
@@ -305,19 +304,12 @@ namespace GGJ2023.Level
 
         #region Wind
         
-        private GameObject smallWindPrefab;
-        private GameObject bigWindPrefab;
+        public GameObject smallWindPrefab;
+        public GameObject bigWindPrefab;
         private GameObject smallWindInstance;
-        [HideInInspector]
-        private AssetReference smallWindReference = new AssetReference("Assets/VFX/ToonWind/p_SmallWind.prefab");
-        [HideInInspector]
-        private AssetReference bigWindReference = new AssetReference("Assets/VFX/ToonWind/p_BigWind.prefab");
         
-        public async void LoadWindAssets()
-        {
-            smallWindPrefab = await smallWindReference.LoadAssetAsync<GameObject>().Task;
-            bigWindPrefab = await bigWindReference.LoadAssetAsync<GameObject>().Task;
-        }
+        public GameObject leavesWithWindPrefab;
+        
         public void ProcessWind()
         {
             float r = 0; 
@@ -342,8 +334,10 @@ namespace GGJ2023.Level
         {
             GameObject bigWindInstance = Instantiate(bigWindPrefab, centerMarker);
             bigWindInstance.transform.rotation = Quaternion.Euler(0,rotation,0);
-            ParticleSystem bigWind = bigWindInstance.GetComponentInChildren<ParticleSystem>();
-            Destroy(bigWindInstance, bigWind.main.duration + 4f);
+
+            GameObject leaves = Instantiate(leavesWithWindPrefab, centerMarker);
+            leaves.transform.rotation = Quaternion.Euler(0,rotation,0);
+
         }
         #endregion
 
