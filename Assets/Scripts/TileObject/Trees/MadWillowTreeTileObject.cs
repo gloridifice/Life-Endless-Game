@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using GGJ2023.Level;
 using UnityEngine;
@@ -6,7 +7,7 @@ namespace GGJ2023.TileObject
 {
     public class MadWillowTreeTileObject : TreeTileObject
     {
-
+        public GameObject effectPrefab;
         public override void ExecuteTreeEffect(LevelManager levelManager)
         {
             if (levelManager.HasAndGetNeighbour8Tiles(CellPos, out List<TileObject[]> list))
@@ -19,15 +20,22 @@ namespace GGJ2023.TileObject
                         if (tile.Is(TileObjectsReferences.animalBack)|| tile.Is(TileObjectsReferences.excavatorBack))
                         {
                             levelManager.AddAnimation(new AnimatorTimedAnim(animator, "attack"));
+                            StartCoroutine(WaitForSmoke(0.5f,tile.Tilemap.layoutGrid.CellToWorld(tile.CellPos)));
+                            
                             if (tile != null)
                             {
-                                tile.Die(LevelManager, 1.5f);
+                                tile.Die(LevelManager, 1.2f);
                             }
- 
                         }
                     }
                 }
             }
+        }
+
+        IEnumerator WaitForSmoke(float time, Vector3 pos)
+        {
+            yield return new WaitForSeconds(time);
+            Instantiate(effectPrefab, pos, new Quaternion());
         }
     }
 }

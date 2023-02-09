@@ -51,6 +51,8 @@ MonoBehaviour:
   registryName: madWillow
   age: 0
   maxAge: 4
+  effectPrefab: {fileID: 2366920515444998160, guid: 25413d0d739cde64eb17f4648ab89b19,
+    type: 3}
 --- !u!82 &4368259999432155437
 AudioSource:
   m_ObjectHideFlags: 0
@@ -258,6 +260,7 @@ MonoBehaviour:
   animalDieAudio: {fileID: 0}
   excavatorAttackAudio: {fileID: 0}
   excavatorDieAudio: {fileID: 0}
+  canPlayfireBlockerTreeAudio: 0
 --- !u!95 &9174163398142249356
 Animator:
   serializedVersion: 4

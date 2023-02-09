@@ -48,7 +48,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   isDead: 0
   registryName: fire
-  extinguishingEffectPrefab: {fileID: 4967808141801962526, guid: 54d9125015a1a2b4ab54ec53d995bf3f,
+  extinguishingEffectPrefab: {fileID: 4967808141801962526, guid: b966b5b8a38549b0a4b1f8e8955a83a0,
     type: 3}
 --- !u!1 &6347416144512596923
 GameObject:

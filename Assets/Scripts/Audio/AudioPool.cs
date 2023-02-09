@@ -14,33 +14,54 @@ namespace GGJ2023.Audio
             pool = new Stack<AudioSource>();
             for (int i = 0; i < size; i++)
             {
-                GameObject item = new GameObject();
-                item.transform.parent = transform;
-                AudioSource source= item.AddComponent<AudioSource>();
-                source.playOnAwake = false;
-                item.SetActive(false);
-                pool.Push(source);
-                //disableObjects.Add(source);
+                Push(CreateNewSource());
             }
         }
         
         public void PutAudio(AudioClip audioClip, AudioPlayData data)
         {
-            AudioSource audioSource = pool.Pop();
+            AudioSource audioSource = Pop();
             audioSource.gameObject.SetActive(true);
             audioSource.clip = audioClip;
             audioSource.volume = data.volume;
             audioSource.pitch = data.pitch;
             audioSource.loop = data.loop;
             audioSource.Play();
-            StartCoroutine(Push(audioClip.length, audioSource));
+            StartCoroutine(WaitToPush(audioClip.length, audioSource));
         }
 
-        public IEnumerator Push(float time, AudioSource source)
+        public IEnumerator WaitToPush(float time, AudioSource source)
         {
             yield return new WaitForSeconds(time);
             source.gameObject.SetActive(false);
+            Push(source);
+        }
+
+        public void Push(AudioSource source)
+        {
             pool.Push(source);
+        }
+        public AudioSource Pop()
+        {
+            if (pool.TryPop(out AudioSource source))
+            {
+                return source;
+            }
+            else
+            {
+                Push(CreateNewSource());
+                return Pop();
+            }
+        }
+
+        public AudioSource CreateNewSource()
+        {
+            GameObject item = new GameObject();
+            item.transform.parent = transform;
+            AudioSource source= item.AddComponent<AudioSource>();
+            source.playOnAwake = false;
+            item.SetActive(false);
+            return source;
         }
     }
 }

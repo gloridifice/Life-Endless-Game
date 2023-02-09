@@ -221,7 +221,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cd73793b14a318349807e4699f3a87b6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.44705883}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -375,6 +375,7 @@ MonoBehaviour:
   animalDieAudio: {fileID: 8300000, guid: 00b49888cdce7c44899e1d33705962a1, type: 3}
   excavatorAttackAudio: {fileID: 0}
   excavatorDieAudio: {fileID: 0}
+  canPlayfireBlockerTreeAudio: 0
 --- !u!95 &2812886579089328804
 Animator:
   serializedVersion: 4
