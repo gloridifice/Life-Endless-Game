@@ -24,7 +24,7 @@ namespace GGJ2023.TileObject
                             
                             if (tile != null)
                             {
-                                tile.Die(LevelManager, 1.2f);
+                                tile.Die(LevelManager, 0.6f);
                             }
                         }
                     }
