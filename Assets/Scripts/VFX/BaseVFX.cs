@@ -7,24 +7,32 @@ namespace GGJ2023.VFX
     public class BaseVFX : MonoBehaviour
     {
         public float duration;
-        private VisualEffect effect;
-        private bool stopped;
+        protected VisualEffect effect;
+        protected bool stopped;
 
-        private void Awake()
+        protected void Awake()
         {
-            effect = GetComponentInChildren<VisualEffect>();
+            Init();
             Invoke(nameof(Stop), duration);
         }
 
+        protected virtual void Init()
+        {
+            effect = GetComponentInChildren<VisualEffect>();
+        }
         private void Update()
         {
-            if (stopped && effect.aliveParticleCount == 0)
+            if (ShouldDie())
             {
                 Destroy(gameObject);
             }
         }
 
-        public void Stop()
+        public virtual bool ShouldDie()
+        {
+            return stopped && effect.aliveParticleCount == 0;
+        }
+        public virtual void Stop()
         {
             effect.Stop();
             stopped = true;
