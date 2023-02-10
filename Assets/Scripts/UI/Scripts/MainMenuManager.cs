@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using GGJ2023.Audio;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace GGJ2023.UI
 {
@@ -18,18 +19,23 @@ namespace GGJ2023.UI
         private Vector3 defaultCamPos;
 
         public CanvasGroup infoPanel;
+        public CanvasGroup settingsPanel;
         public bool isInfoOpen;
+        public bool isSettingsOpen;
 
         private void Awake()
         {
             camera = Camera.main;
             defaultCamPos = camera.transform.localPosition;
             infoPanel.alpha = 0;
+            settingsPanel.alpha = 0;
+            settingsPanel.gameObject.SetActive(false);
         }
 
         private void Update()
         {
-            if (controlAble)
+            
+            if (controlAble && EventSystem.current.currentSelectedGameObject == null)
             {
                 if (Input.GetMouseButton(0))
                 {
@@ -77,7 +83,6 @@ namespace GGJ2023.UI
 
         public void SwitchInfo()
         {
-            isInfoOpen = !isInfoOpen;
             if (isInfoOpen)
             {
                 infoPanel.DOFade(0f, 1f);
@@ -86,6 +91,22 @@ namespace GGJ2023.UI
             {
                 infoPanel.DOFade(1f,1f);
             }
+            isInfoOpen = !isInfoOpen;
+        }
+
+        public void SwitchSettings()
+        {
+            if (isSettingsOpen)
+            {
+                Tweener tweener = settingsPanel.DOFade(0f, 0.5f);
+                tweener.onKill += () => settingsPanel.gameObject.SetActive(false);
+            }
+            else
+            {
+                settingsPanel.gameObject.SetActive(true);
+                settingsPanel.DOFade(1f, 0.5f);
+            }
+            isSettingsOpen = !isSettingsOpen;
         }
 
         public void StartGame()

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4381c3cece684a0386e7bb6b6fdfab04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 24
+  size: 12
 --- !u!114 &4327969531175793129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,3 +59,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootDatabase: {fileID: 11400000, guid: 54d0a059d54c6de4fb3c7367dbb2ac94, type: 2}
+  mixer: {fileID: 24100000, guid: 91449fe15bad3e640b41b05ffab63816, type: 2}
