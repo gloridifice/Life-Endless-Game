@@ -22,9 +22,9 @@ namespace GGJ2023.UI
             image.material.SetFloat("_StepIn",1f);
         }
 
-        public void SetLevelInfo(int levelIndex, string levelName)
+        public void SetLevelInfo(string levelIndexName, string levelName)
         {
-            indexTMPText.text = levelIndex.ToString();
+            indexTMPText.text = levelIndexName;
             nameTMPText.text = levelName;
         }
         /// <summary>
