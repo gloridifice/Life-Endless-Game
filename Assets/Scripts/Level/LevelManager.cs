@@ -134,6 +134,7 @@ namespace GGJ2023.Level
             onRoundExecute = (level) => { };
             onRoundEnd = (level) => { };
             roundCount = 0;
+            flowerCount = -1;
             seedsCounts = new Dictionary<RegistryTileObject, int>();
             timedAnims = new List<TimedAnim>();
             seedsCounts.Add(TileObjectsReferences.extinguishingTree, seedExtinguishingTree);
