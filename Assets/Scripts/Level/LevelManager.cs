@@ -11,6 +11,7 @@ using GGJ2023.Audio;
 using GGJ2023.Event;
 using Unity.Mathematics;
 using UnityEngine.AddressableAssets;
+using UnityEngine.VFX;
 
 namespace GGJ2023.Level
 {
@@ -104,6 +105,8 @@ namespace GGJ2023.Level
         [HideInInspector] public int flowerCount = 0;
         [HideInInspector] public DirectionType windDirection;
 
+        public Color leavesColor;
+        
         public int levelIndex;
         public string levelIndexName;
         public string levelName;
@@ -364,6 +367,8 @@ namespace GGJ2023.Level
             bigWindInstance.transform.rotation = Quaternion.Euler(0, rotation, 0);
 
             GameObject leaves = Instantiate(leavesWithWindPrefab, centerMarker);
+            
+            leaves.GetComponentInChildren<VisualEffect>().SetVector4("Color", new Vector4(leavesColor.r,leavesColor.g,leavesColor.b,leavesColor.a));
             leaves.transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
 
