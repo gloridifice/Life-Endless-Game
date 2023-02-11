@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using DG.Tweening;
 using GGJ2023.Audio;
+using GGJ2023.Event;
 using Unity.Mathematics;
 using UnityEngine.AddressableAssets;
 
@@ -79,8 +80,9 @@ namespace GGJ2023.Level
         }
 
         public Dictionary<RegistryTileObject, int> seedsCounts;
-        public Action<LevelManager> onRoundExecute;
-        public Action<LevelManager> onRoundEnd;
+        public PriorityAction<LevelManager> onRoundExecute;
+        public PriorityAction<LevelManager> onRoundExecuted;
+        public PriorityAction<LevelManager> onRoundEnd;
         private TumbleweedTileObject player;
 
         public TumbleweedTileObject Player
@@ -131,8 +133,9 @@ namespace GGJ2023.Level
         public void InitLevel()
         {
             controlAble = true;
-            onRoundExecute = (level) => { };
-            onRoundEnd = (level) => { };
+            onRoundExecute = new PriorityAction<LevelManager>();
+            onRoundExecuted = new PriorityAction<LevelManager>();
+            onRoundEnd = new PriorityAction<LevelManager>();
             roundCount = 0;
             flowerCount = -1;
             seedsCounts = new Dictionary<RegistryTileObject, int>();
@@ -395,6 +398,7 @@ namespace GGJ2023.Level
             onRoundExecute.Invoke(this); //执行逻辑和添加动画
             roundCount++;
             UpdateTileObjectMap();
+            onRoundExecuted.Invoke(this);
             //HandleTileCollision();
             Invoke(nameof(WaitForRoundExecuteAnim), GetMaxAnimDuration(timedAnims));
         }
@@ -651,14 +655,16 @@ namespace GGJ2023.Level
 
         public void AddObjActions(TileObject.TileObject tileObject)
         {
-            onRoundExecute += tileObject.OnRoundExecute;
-            onRoundEnd += tileObject.OnRoundEnd;
+            onRoundExecute.AddListener(tileObject.OnRoundExecute);
+            onRoundExecuted.AddListener(tileObject.OnRoundExecuted);
+            onRoundEnd.AddListener(tileObject.OnRoundEnd);
         }
 
         public void RemoveObjActions(TileObject.TileObject tileObject)
         {
-            onRoundExecute -= tileObject.OnRoundExecute;
-            onRoundEnd -= tileObject.OnRoundEnd;
+            onRoundExecute.RemoveListener(tileObject.OnRoundExecute);
+            onRoundExecuted.RemoveListener(tileObject.OnRoundExecuted);
+            onRoundEnd.RemoveListener(tileObject.OnRoundEnd);
         }
 
         void AddActions()

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using GGJ2023.Level;
 using UnityEngine;
 using DG.Tweening;
+using GGJ2023.Event;
 using Unity.Mathematics;
 
 namespace GGJ2023.TileObject
@@ -35,15 +36,16 @@ namespace GGJ2023.TileObject
             }
         }
 
+        public override void OnRoundExecuted(LevelManager levelManager)
+        {
+            base.OnRoundExecuted(levelManager);
+            levelManager.AddTileObject(CellPos, TileObjectsReferences.flower);
+        }
+
         public Vector3Int GetMoveToPos()
         {
             Vector3Int direction = DirectionTypeUtils.GetVectorFromDirection(LevelManager.Instance.windDirection);
             return CellPos + direction;
-        }
-        public override void OnRoundEnd(LevelManager levelManager)
-        {
-            base.OnRoundEnd(levelManager);
-            levelManager.AddTileObject(CellPos, TileObjectsReferences.flower);
         }
 
         bool WillBumpedIntoDangerObj(LevelManager levelManager)

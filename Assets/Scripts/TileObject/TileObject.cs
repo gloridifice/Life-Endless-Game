@@ -138,6 +138,10 @@ namespace GGJ2023.TileObject
         {
         }
 
+        public virtual void OnRoundExecuted(LevelManager levelManager)
+        {
+            
+        }
         public virtual void Die(LevelManager levelManager, float delay = 0)
         {
             isDead = true;
