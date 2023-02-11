@@ -8,8 +8,10 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using DG.Tweening;
 using GGJ2023.Audio;
+using GGJ2023.Event;
 using Unity.Mathematics;
 using UnityEngine.AddressableAssets;
+using UnityEngine.VFX;
 
 namespace GGJ2023.Level
 {
@@ -21,6 +23,7 @@ namespace GGJ2023.Level
         public Tilemap mapTilemap;
         public Tilemap objectTilemap;
         private LevelUIManager uiManager;
+
         public LevelUIManager UIManager
         {
             get
@@ -36,6 +39,7 @@ namespace GGJ2023.Level
 
         public Transition transition;
         private Dictionary<Vector3Int, List<TileObject.TileObject>> currentObjectMap;
+
         public Dictionary<Vector3Int, List<TileObject.TileObject>> CurrentObjectMap
         {
             get
@@ -51,6 +55,7 @@ namespace GGJ2023.Level
         }
 
         private Dictionary<Vector3Int, MapTile.MapTile> currentMapTiles;
+
         public Dictionary<Vector3Int, MapTile.MapTile> CurrentMapTiles
         {
             get
@@ -74,10 +79,13 @@ namespace GGJ2023.Level
                 return currentMapTiles;
             }
         }
+
         public Dictionary<RegistryTileObject, int> seedsCounts;
-        public Action<LevelManager> onRoundExecute;
-        public Action<LevelManager> onRoundEnd;
+        public PriorityAction<LevelManager> onRoundExecute;
+        public PriorityAction<LevelManager> onRoundExecuted;
+        public PriorityAction<LevelManager> onRoundEnd;
         private TumbleweedTileObject player;
+
         public TumbleweedTileObject Player
         {
             get
@@ -97,13 +105,15 @@ namespace GGJ2023.Level
         [HideInInspector] public int flowerCount = 0;
         [HideInInspector] public DirectionType windDirection;
 
-        public int levelIndex;
-        public string levelName;
+        public Color leavesColor;
         
+        public int levelIndex;
+        public string levelIndexName;
+        public string levelName;
+
         public int seedExtinguishingTree, seedFireBlocker, seedMadWillow;
         public int victoryFlowerAmount;
-        [TextArea]
-        public string enterText;
+        [TextArea] public string enterText;
 
         [HideInInspector] public bool isWon;
 
@@ -112,6 +122,7 @@ namespace GGJ2023.Level
             Instance = this;
             controlAble = false; //等待场景加载完成才可以控制
         }
+
         private void OnDisable()
         {
             RemoveActions();
@@ -125,9 +136,11 @@ namespace GGJ2023.Level
         public void InitLevel()
         {
             controlAble = true;
-            onRoundExecute = (level) => { };
-            onRoundEnd = (level) => { };
+            onRoundExecute = new PriorityAction<LevelManager>();
+            onRoundExecuted = new PriorityAction<LevelManager>();
+            onRoundEnd = new PriorityAction<LevelManager>();
             roundCount = 0;
+            flowerCount = -1;
             seedsCounts = new Dictionary<RegistryTileObject, int>();
             timedAnims = new List<TimedAnim>();
             seedsCounts.Add(TileObjectsReferences.extinguishingTree, seedExtinguishingTree);
@@ -142,8 +155,10 @@ namespace GGJ2023.Level
                     tileObject.Init();
                 }
             }
-            transition.SetLevelInfo(levelIndex, levelName);
+
+            transition.SetLevelInfo(levelIndexName, levelName);
             transition.TransitionIn();
+            uiManager.OnFlowerAmountChanged(flowerCount);
         }
 
         private void Update()
@@ -161,10 +176,11 @@ namespace GGJ2023.Level
         private float keyBufferCountDown;
         private float keyBufferDuration = 1.5f;
 
-        private KeyCode[] usedKeyCode = 
+        private KeyCode[] usedKeyCode =
         {
-            KeyCode.W,KeyCode.A,KeyCode.S,KeyCode.D,KeyCode.J,KeyCode.K,KeyCode.L,KeyCode.N
+            KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.N
         };
+
         private void InputUpdate()
         {
             //更新按键缓存
@@ -174,8 +190,10 @@ namespace GGJ2023.Level
                 {
                     DetectKeyDown(code);
                 }
+
                 HandleInput(keyBuffer);
             }
+
             //计时
             keyBufferCountDown = Mathf.Max(0, keyBufferCountDown - Time.deltaTime);
         }
@@ -188,6 +206,7 @@ namespace GGJ2023.Level
                 keyBufferCountDown = keyBufferDuration;
             }
         }
+
         public void HandleInput(KeyCode keyCode)
         {
             if (keyBufferCountDown == 0) return;
@@ -222,20 +241,23 @@ namespace GGJ2023.Level
                         //todo 提醒玩家不能向水中移动
 
                         //如果是防火墙，可以卡
-                        if(!this.HasTileType(Player.GetMoveToPos(), TileObjectsReferences.wall))
+                        if (!this.HasTileType(Player.GetMoveToPos(), TileObjectsReferences.wall))
                             return;
                     }
+
                     NextRound();
                 }
-                
+
                 if (keyCode == KeyCode.J)
                 {
                     SownAt(Player.CellPos, TileObjectsReferences.extinguishingTree);
                 }
+
                 if (keyCode == KeyCode.K)
                 {
                     SownAt(Player.CellPos, TileObjectsReferences.fireBlockerTree);
                 }
+
                 if (keyCode == KeyCode.L)
                 {
                     SownAt(Player.CellPos, TileObjectsReferences.madWillow);
@@ -247,6 +269,7 @@ namespace GGJ2023.Level
                 uiManager.NextLevel();
             }
         }
+
         #endregion
 
         #region Seed
@@ -256,7 +279,7 @@ namespace GGJ2023.Level
             if (seedsCounts[treeType] > 0 && CanAddTileObject(pos, treeType))
             {
                 controlAble = false;
-                Player.animator.Play("sow");    //播放播种动画
+                Player.animator.Play("sow"); //播放播种动画
                 StartCoroutine(WaitSowStop(this, pos, treeType));
                 ReduceSeed(treeType);
             }
@@ -296,29 +319,36 @@ namespace GGJ2023.Level
             {
                 seedsCounts[seedType] = Mathf.Max(seedsCounts[seedType] - 1, 0);
             }
+
             UIManager.OnSeedChanged();
         }
-        
 
         #endregion
 
         #region Wind
-        
+
         public GameObject smallWindPrefab;
         public GameObject bigWindPrefab;
         private GameObject smallWindInstance;
-        
+
         public GameObject leavesWithWindPrefab;
-        
+
         public void ProcessWind()
         {
-            float r = 0; 
+            float r = 0;
             switch (windDirection)
             {
-                case DirectionType.Right: r = 90; break;
-                case DirectionType.Back: r = 180; break;
-                case DirectionType.Left: r = 270; break;
+                case DirectionType.Right:
+                    r = 90;
+                    break;
+                case DirectionType.Back:
+                    r = 180;
+                    break;
+                case DirectionType.Left:
+                    r = 270;
+                    break;
             }
+
             ProcessSmallWind(r);
             ProcessBigWind(r);
             AudioManager.Instance.Play("effect", "wind");
@@ -328,28 +358,32 @@ namespace GGJ2023.Level
         {
             if (smallWindInstance != null) Destroy(smallWindInstance);
             smallWindInstance = Instantiate(smallWindPrefab, centerMarker);
-            smallWindInstance.transform.rotation = Quaternion.Euler(0,rotation,0);
+            smallWindInstance.transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
+
         public void ProcessBigWind(float rotation = 0)
         {
             GameObject bigWindInstance = Instantiate(bigWindPrefab, centerMarker);
-            bigWindInstance.transform.rotation = Quaternion.Euler(0,rotation,0);
+            bigWindInstance.transform.rotation = Quaternion.Euler(0, rotation, 0);
 
             GameObject leaves = Instantiate(leavesWithWindPrefab, centerMarker);
-            leaves.transform.rotation = Quaternion.Euler(0,rotation,0);
-
+            
+            leaves.GetComponentInChildren<VisualEffect>().SetVector4("Color", new Vector4(leavesColor.r,leavesColor.g,leavesColor.b,leavesColor.a));
+            leaves.transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
+
         #endregion
 
         #region Round
 
         public List<TimedAnim> timedAnims;
-        [HideInInspector]
-        public bool controlAble = false;
+        [HideInInspector] public bool controlAble = false;
+
         public void AddAnimation(TimedAnim anim)
         {
             timedAnims.Add(anim);
         }
+
         public float GetMaxAnimDuration(List<TimedAnim> anims)
         {
             float i = 0;
@@ -357,8 +391,10 @@ namespace GGJ2023.Level
             {
                 i = Mathf.Max(timedAnim.duration, i);
             }
+
             return i;
         }
+
         public void NextRound()
         {
             controlAble = false;
@@ -367,10 +403,11 @@ namespace GGJ2023.Level
             onRoundExecute.Invoke(this); //执行逻辑和添加动画
             roundCount++;
             UpdateTileObjectMap();
+            onRoundExecuted.Invoke(this);
             //HandleTileCollision();
             Invoke(nameof(WaitForRoundExecuteAnim), GetMaxAnimDuration(timedAnims));
         }
-        
+
         public void WaitForRoundExecuteAnim()
         {
             timedAnims.Clear();
@@ -387,6 +424,7 @@ namespace GGJ2023.Level
             DetectWin(); //检测胜利
             HandleInput(keyBuffer);
         }
+
         public void GameOver()
         {
             GameManager.Instance.LoadLevel(levelIndex);
@@ -400,6 +438,7 @@ namespace GGJ2023.Level
                 Win();
                 return true;
             }
+
             return false;
         }
 
@@ -411,6 +450,7 @@ namespace GGJ2023.Level
             controlAble = false;
             uiManager.OnWin();
         }
+
         /// <summary>
         /// 处理碰撞, 若有碰撞则触发 OnTileCollide
         /// </summary>
@@ -430,23 +470,22 @@ namespace GGJ2023.Level
                             list.Remove(obj);
                             obj.OnTileCollide(this, list.ToArray(), pair.Key);
                         }
-                        
                     }
                 }
             }
         }
-        
+
         #endregion
-        
+
         #region Map
-        
+
         public bool HasAndGetMapTile(Vector3Int pos, out MapTile.MapTile mapTile)
         {
             bool flag = CurrentMapTiles.ContainsKey(pos);
             mapTile = flag ? CurrentMapTiles[pos] : null;
             return flag;
         }
-        
+
         /// <summary>
         /// 更新当前状态下所有瓦片物体的字典
         /// </summary>
@@ -462,6 +501,7 @@ namespace GGJ2023.Level
                         CurrentObjectMap.Add(tileObject.CellPos, new List<TileObject.TileObject>());
                         //Debug.Log(tileObject.cellPos + " : " + tileObject.registryName);
                     }
+
                     CurrentObjectMap[tileObject.CellPos].Add(tileObject);
                 }
             }
@@ -503,6 +543,7 @@ namespace GGJ2023.Level
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -511,7 +552,7 @@ namespace GGJ2023.Level
         /// </summary>
         public List<TileObject.TileObject> GetTileObjectsOnPos(Vector3Int cellPos)
         {
-            if (!CurrentObjectMap.ContainsKey(cellPos)) return new List<TileObject.TileObject>();        
+            if (!CurrentObjectMap.ContainsKey(cellPos)) return new List<TileObject.TileObject>();
             return CurrentObjectMap[cellPos];
         }
 
@@ -544,9 +585,10 @@ namespace GGJ2023.Level
                 objects = tileObjects.ToArray();
                 return true;
             }
+
             return false;
         }
-        
+
         /// <summary>
         /// 周围八个格子是否有特定物体
         /// </summary>
@@ -578,8 +620,9 @@ namespace GGJ2023.Level
 
             return flag;
         }
-        
-        public bool HasAndGetNeighbour4Tiles(Vector3Int cellPos, out Dictionary<DirectionType, TileObject.TileObject[]> tileLists)
+
+        public bool HasAndGetNeighbour4Tiles(Vector3Int cellPos,
+            out Dictionary<DirectionType, TileObject.TileObject[]> tileLists)
         {
             tileLists = new Dictionary<DirectionType, TileObject.TileObject[]>();
             bool flag = false;
@@ -590,12 +633,13 @@ namespace GGJ2023.Level
                 if (HasAndGetTileObject(pos, out TileObject.TileObject[] tiles))
                 {
                     flag = true;
-                    tileLists.Add((DirectionType)i ,tiles);
+                    tileLists.Add((DirectionType)i, tiles);
                 }
             }
 
             return flag;
         }
+
         /// <summary>
         /// 周围四个格子是否有特定物体
         /// </summary>
@@ -616,14 +660,16 @@ namespace GGJ2023.Level
 
         public void AddObjActions(TileObject.TileObject tileObject)
         {
-            onRoundExecute += tileObject.OnRoundExecute;
-            onRoundEnd += tileObject.OnRoundEnd;
+            onRoundExecute.AddListener(tileObject.OnRoundExecute);
+            onRoundExecuted.AddListener(tileObject.OnRoundExecuted);
+            onRoundEnd.AddListener(tileObject.OnRoundEnd);
         }
 
         public void RemoveObjActions(TileObject.TileObject tileObject)
         {
-            onRoundExecute -= tileObject.OnRoundExecute;
-            onRoundEnd -= tileObject.OnRoundEnd;
+            onRoundExecute.RemoveListener(tileObject.OnRoundExecute);
+            onRoundExecuted.RemoveListener(tileObject.OnRoundExecuted);
+            onRoundEnd.RemoveListener(tileObject.OnRoundEnd);
         }
 
         void AddActions()
@@ -652,8 +698,7 @@ namespace GGJ2023.Level
 
         #region Sounds
 
-        public SoundSource fireSoundSource = new ("effect", "fire");
-        
+        public SoundSource fireSoundSource = new("effect", "fire");
 
         #endregion
     }

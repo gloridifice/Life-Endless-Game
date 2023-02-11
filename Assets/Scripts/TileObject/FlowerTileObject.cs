@@ -11,6 +11,7 @@ namespace GGJ2023.TileObject
         public override void Init()
         {
             base.Init();
+            LevelManager.flowerCount++;
             smokeVFX.gameObject.SetActive(false);
             foreach (MeshRenderer meshRenderer in GetComponentsInChildren<MeshRenderer>())
             {
@@ -53,17 +54,6 @@ namespace GGJ2023.TileObject
             levelManager.flowerCount--;
             smokeVFX.gameObject.SetActive(true);
             base.Die(levelManager, delay);
-        }
-
-        public override bool OnTileAdded(LevelManager levelManager, Vector3Int pos, out GameObject instance)
-        {
-            if (base.OnTileAdded(levelManager, pos, out instance))
-            {
-                levelManager.flowerCount++;
-                return true;
-            }
-
-            return false;
         }
     }
 }

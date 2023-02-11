@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: TFF_Atlas_Vegetation_1A_D
-  m_Shader: {fileID: -6465566751694194690, guid: 601fd063c77d3484da559bd0cfc1292e,
+  m_Shader: {fileID: -6465566751694194690, guid: d1a909f47f517b5469e66cc73ea3bf8e,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -111,10 +111,12 @@ Material:
     - _SampleGI: 0
     - _Scale: 23
     - _SmoothnessTextureChannel: 0
+    - _Smothness: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
     - _UVSec: 0
+    - _WaveStrength: 0.019
     - _WindJitter: 0.3
     - _WindScroll: 0.1
     - _ZWrite: 1
@@ -126,6 +128,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Tilling: {r: 1, g: 1, b: 0, a: 0}
+    - _WaveDirection: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7862274794741992756
 MonoBehaviour:

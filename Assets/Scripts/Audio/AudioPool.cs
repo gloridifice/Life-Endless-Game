@@ -26,6 +26,7 @@ namespace GGJ2023.Audio
             audioSource.volume = data.volume;
             audioSource.pitch = data.pitch;
             audioSource.loop = data.loop;
+            audioSource.outputAudioMixerGroup = data.mixerGroup;
             audioSource.Play();
             StartCoroutine(WaitToPush(audioClip.length, audioSource));
         }

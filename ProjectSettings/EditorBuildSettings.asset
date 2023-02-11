@@ -12,8 +12,77 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMeun.unity
     guid: cea530d98ca322747be5db0380caaeb1
   - enabled: 1
-    path: Assets/Scenes/Levels/S001.unity
-    guid: 2f66671d85feddb428d55ae27bcf12e6
+    path: Assets/Scenes/New Levels/S001.unity
+    guid: 7cdc549318c45044c99e64a7122d1e91
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S002.unity
+    guid: 843475cdeb2204b4280b9122c26973c0
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S003.unity
+    guid: b71f42f2a82214145ad09923d2725402
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S004.unity
+    guid: faea8e90cd1486544a4f9e400923b25f
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S005.unity
+    guid: a36a455a940bf9447a632925db141457
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S006.unity
+    guid: 1538fc6d7b0a577419f86d25d5fcba3d
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S007.unity
+    guid: 669557e1706f51646ad5244fbfb87902
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S008.unity
+    guid: 907001bacf4e8084daf550b72ffdab93
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S009.unity
+    guid: 11cd33022065f59419dc0e8c3b255cdd
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S010.unity
+    guid: 012b089a71e58c74caa6cc7b5323a337
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S011.unity
+    guid: 5d6c13641a1d5b84693c2d6b0fa69676
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S012.unity
+    guid: f696da09f4d483348a8753aeb7c323cf
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S013.unity
+    guid: c87cbbf7fad011244b7f2cdb4c52b009
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S014.unity
+    guid: 4d82b23355a0ebc489860d8adbb97db4
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S015.unity
+    guid: b8336aa63fb4e014f9a873ceda08d5f7
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S016.unity
+    guid: e3b65d143b928e24db2879881b8da781
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S017.unity
+    guid: e6bb7e6b101650d4d9618d9acc05c11a
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S018.unity
+    guid: c3ed83ee2f5157644b1451ce78674254
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S019.unity
+    guid: af05038078c485e46a15bf8645ed0c15
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S020.unity
+    guid: b914a047a525bd240a3a7d6c3025758a
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S021.unity
+    guid: 010b3a4bf8bdaab45832321d9ef672a4
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S022.unity
+    guid: a8925eacc66d0f94183eb67fc4bed5d8
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S023.unity
+    guid: 2cd2b77a9fee2aa42b5a4e9843b6b0ae
+  - enabled: 1
+    path: Assets/Scenes/New Levels/S024.unity
+    guid: a56bc8ed502511544b2e090a09b959e2
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: d4cc784a13f408548984f85047c96a97,
       type: 2}

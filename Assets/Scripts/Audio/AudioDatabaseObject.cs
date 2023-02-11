@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.PlayerLoop;
 
 namespace GGJ2023.Audio
@@ -11,6 +12,7 @@ namespace GGJ2023.Audio
         public float volume = 1;
         public float pitch = 1;
         public List<AudioGroupData> groups;
+        public AudioMixerGroup mixerGroup;
         [HideInInspector] public Dictionary<string, AudioGroupData> groupDictionary;
 
         public void Init()
