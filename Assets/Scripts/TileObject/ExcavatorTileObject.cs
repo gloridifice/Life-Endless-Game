@@ -6,6 +6,18 @@ namespace GGJ2023.TileObject
 {
     public class ExcavatorTileObject : DirectionalTileObject
     {
+        private void Start()
+        {
+            if (moveDirection == DirectionType.Right)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            if (moveDirection == DirectionType.Back)
+            {
+                transform.GetChild(1).transform.localScale = new Vector3(1, 1, -1);
+            }
+        }
+
         public override void OnRoundExecute(LevelManager levelManager)
         {
             if (!CanMoveTo(levelManager, CellPos + DirectionTypeUtils.GetVectorFromDirection(moveDirection)))
@@ -15,6 +27,16 @@ namespace GGJ2023.TileObject
 
             if (CanMoveTo(levelManager, CellPos + DirectionTypeUtils.GetVectorFromDirection(moveDirection)))
             {
+                Vector3 scale = transform.localScale;
+                Vector3 triangleScale = transform.GetChild(1).transform.localScale;
+
+                if (moveDirection == DirectionType.Right) scale.x = -Mathf.Abs(scale.x);
+                if (moveDirection == DirectionType.Left) scale.x = Mathf.Abs(scale.x);
+                if (moveDirection == DirectionType.Forward) triangleScale.z = Mathf.Abs(triangleScale.z);
+                if (moveDirection == DirectionType.Back) triangleScale.z = -Mathf.Abs(triangleScale.z);
+                transform.localScale = scale;
+                transform.GetChild(1).transform.localScale = triangleScale;
+
                 animator.SetTrigger("move");
                 levelManager.AddAnimation(new AnimatorTimedAnim(animator, "move"));
                 Move(DirectionTypeUtils.GetVectorFromDirection(moveDirection));

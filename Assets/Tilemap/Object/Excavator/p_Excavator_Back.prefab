@@ -100,18 +100,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8934849407751612367, guid: 0919e03e71e761a44a66b4e222a8d529,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
+      propertyPath: m_LocalPosition.y
+      value: 0.895
       objectReference: {fileID: 0}
     - target: {fileID: 8934849407751612367, guid: 0919e03e71e761a44a66b4e222a8d529,
         type: 3}
-      propertyPath: m_LocalRotation.y
+      propertyPath: m_LocalPosition.z
+      value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934849407751612367, guid: 0919e03e71e761a44a66b4e222a8d529,
+        type: 3}
+      propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8934849407751612367, guid: 0919e03e71e761a44a66b4e222a8d529,
         type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934849407751612367, guid: 0919e03e71e761a44a66b4e222a8d529,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0919e03e71e761a44a66b4e222a8d529, type: 3}
@@ -166,6 +176,7 @@ MonoBehaviour:
   animalDieAudio: {fileID: 0}
   excavatorAttackAudio: {fileID: 0}
   excavatorDieAudio: {fileID: 0}
+  canPlayfireBlockerTreeAudio: 0
 --- !u!1 &8935527929314716050 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 147897250797151330, guid: 0919e03e71e761a44a66b4e222a8d529,
