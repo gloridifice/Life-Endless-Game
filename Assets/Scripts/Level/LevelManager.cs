@@ -400,6 +400,7 @@ namespace GGJ2023.Level
             controlAble = false;
             timedAnims.Clear();
             ProcessWind();
+            UpdateTileObjectMap();
             onRoundExecute.Invoke(this); //执行逻辑和添加动画
             roundCount++;
             UpdateTileObjectMap();
