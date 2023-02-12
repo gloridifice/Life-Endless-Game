@@ -121,6 +121,23 @@ namespace GGJ2023.Level
         {
             Instance = this;
             controlAble = false; //等待场景加载完成才可以控制
+
+            if(levelIndex >=1 && levelIndex <= 6)
+            {
+                //AudioManager.Instance.Play("bgm", "summer");
+            }
+            else if (levelIndex >= 7 && levelIndex <= 13)
+            {
+                //AudioManager.Instance.Play("bgm", "autumn");
+            }
+            else if (levelIndex >= 14 && levelIndex <= 18)
+            {
+                //AudioManager.Instance.Play("bgm", "winter");
+            }
+            else if (levelIndex >= 19 && levelIndex <= 24)
+            {
+                //AudioManager.Instance.Play("bgm", "spring");
+            }
         }
 
         private void OnDisable()

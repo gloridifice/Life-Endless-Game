@@ -34,7 +34,7 @@ MonoBehaviour:
     - volume: 1
       pitch: 1
       audioClip: {fileID: 8300000, guid: 1040fb2d9addcb64b947ba72f94d244d, type: 3}
-    lastPlayIndex: 2
+    lastPlayIndex: 0
   - groupName: fire_blocker_tree
     groupVolume: 1
     groupPitch: 1
@@ -63,8 +63,8 @@ MonoBehaviour:
     groupData:
     - volume: 1
       pitch: 1
-      audioClip: {fileID: 8300000, guid: 1c3ee20ef20206542ba78e1b567ff5ac, type: 3}
-    lastPlayIndex: 1
+      audioClip: {fileID: 8300000, guid: 5adef3f074f807645baeba3a3b211c10, type: 3}
+    lastPlayIndex: 0
   - groupName: tumbleweed_move
     groupVolume: 1
     groupPitch: 1
@@ -74,7 +74,7 @@ MonoBehaviour:
     - volume: 1
       pitch: 1
       audioClip: {fileID: 8300000, guid: 792da42202b125240947f36fab1232bb, type: 3}
-    lastPlayIndex: 1
+    lastPlayIndex: 0
   - groupName: tumbleweed_sow
     groupVolume: 1
     groupPitch: 1
@@ -83,8 +83,8 @@ MonoBehaviour:
     groupData:
     - volume: 1
       pitch: 1
-      audioClip: {fileID: 8300000, guid: 386ea7a5bfe58a84f920294caff3864a, type: 3}
-    lastPlayIndex: 1
+      audioClip: {fileID: 8300000, guid: decdc4ab6ac872a429ce4f3dd63617e5, type: 3}
+    lastPlayIndex: 0
   - groupName: tumbleweed_die
     groupVolume: 1
     groupPitch: 1
@@ -94,7 +94,7 @@ MonoBehaviour:
     - volume: 1
       pitch: 1
       audioClip: {fileID: 8300000, guid: c266be2bb95ffb247855874fc7dc5f25, type: 3}
-    lastPlayIndex: 1
+    lastPlayIndex: 0
   - groupName: plant_grow
     groupVolume: 1
     groupPitch: 1
@@ -104,7 +104,7 @@ MonoBehaviour:
     - volume: 1
       pitch: 1
       audioClip: {fileID: 8300000, guid: 7c06e0f7791503c49a1ee88005d1e70f, type: 3}
-    lastPlayIndex: 1
+    lastPlayIndex: 0
   - groupName: plant_die
     groupVolume: 1
     groupPitch: 1
@@ -124,7 +124,7 @@ MonoBehaviour:
     - volume: 1
       pitch: 1
       audioClip: {fileID: 8300000, guid: c910057c4865641408035eb958fc1c17, type: 3}
-    lastPlayIndex: 1
+    lastPlayIndex: 0
   - groupName: animal_die
     groupVolume: 1
     groupPitch: 1
@@ -144,7 +144,7 @@ MonoBehaviour:
     - volume: 1
       pitch: 1
       audioClip: {fileID: 8300000, guid: 92be281fbaa755a42889a6f2412fdcfe, type: 3}
-    lastPlayIndex: 1
+    lastPlayIndex: 0
   - groupName: excavator_die
     groupVolume: 1
     groupPitch: 1
@@ -153,8 +153,8 @@ MonoBehaviour:
     groupData:
     - volume: 1
       pitch: 1
-      audioClip: {fileID: 8300000, guid: 790f6ff5534d05d4c9d79b7ccc60acbc, type: 3}
-    lastPlayIndex: 1
+      audioClip: {fileID: 8300000, guid: 0d24b886a298d904bae0b7792d1680c2, type: 3}
+    lastPlayIndex: 0
   - groupName: fire
     groupVolume: 1
     groupPitch: 1
@@ -164,7 +164,7 @@ MonoBehaviour:
     - volume: 1
       pitch: 1
       audioClip: {fileID: 8300000, guid: 1e2ad1288710ace4d8fbe8ae8781da15, type: 3}
-    lastPlayIndex: 1
+    lastPlayIndex: 0
   - groupName: win
     groupVolume: 1
     groupPitch: 1
@@ -174,7 +174,7 @@ MonoBehaviour:
     - volume: 1
       pitch: 1
       audioClip: {fileID: 8300000, guid: e5ca7eac5f1ad4e47ae669041a33b941, type: 3}
-    lastPlayIndex: 1
+    lastPlayIndex: 0
   - groupName: click
     groupVolume: 1
     groupPitch: 1

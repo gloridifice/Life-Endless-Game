@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using GGJ2023.Level;
 using Random = UnityEngine.Random;
 
 namespace GGJ2023.Audio
@@ -14,16 +15,53 @@ namespace GGJ2023.Audio
         public AudioRootDatabaseObject rootDatabase;
         public AudioMixer mixer;
 
+
         public static AudioManager Instance { get; private set; }
 
-        private SoundSource bgmSoundSource = new ("bgm", "level");
+        private SoundSource springBgmSoundSource = new ("bgm", "spring");
+        private SoundSource summerBgmSoundSource = new("bgm", "summer");
+        private SoundSource autumnBgmSoundSource = new("bgm", "autumn");
+        private SoundSource winterBgmSoundSource = new("bgm", "winter");
 
         private void Update()
         {
+            int levelIndex = GameObject.Find("Level-----------------------------------").GetComponent<LevelManager>().levelIndex;
+
+            if (levelIndex >= 1 && levelIndex <= 6)
+            {
+                if (!summerBgmSoundSource.isPlaying)
+                {
+                    summerBgmSoundSource.Play();
+                }
+            }
+            else if (levelIndex >= 7 && levelIndex <= 13)
+            {
+                if (!autumnBgmSoundSource.isPlaying)
+                {
+                    autumnBgmSoundSource.Play();
+                }
+            }
+            else if (levelIndex >= 14 && levelIndex <= 18)
+            {
+                if (!winterBgmSoundSource.isPlaying)
+                {
+                    winterBgmSoundSource.Play();
+                }
+            }
+            else if (levelIndex >= 19 && levelIndex <= 24)
+            {
+                if (!springBgmSoundSource.isPlaying)
+                {
+                    springBgmSoundSource.Play();
+                }
+            }
+
+            /*
             if (!bgmSoundSource.isPlaying)
             {
                 bgmSoundSource.Play();
             }
+            */
         }
 
         private void Awake()
