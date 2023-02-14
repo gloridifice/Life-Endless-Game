@@ -152,7 +152,7 @@ namespace GGJ2023.Level
 
         public void InitLevel()
         {
-            controlAble = true;
+            controlAble = false;
             onRoundExecute = new PriorityAction<LevelManager>();
             onRoundExecuted = new PriorityAction<LevelManager>();
             onRoundEnd = new PriorityAction<LevelManager>();
@@ -175,15 +175,22 @@ namespace GGJ2023.Level
 
             transition.SetLevelInfo(levelIndexName, levelName);
             transition.TransitionIn();
+            transition.onTransitionInComplete += OnLevelOpened;
             uiManager.OnFlowerAmountChanged(flowerCount);
         }
-
+        /// <summary>
+        /// 转场结束后触发
+        /// </summary>
+        private void OnLevelOpened()
+        {
+            controlAble = true;
+        }
         private void Update()
         {
             InputUpdate();
             if (Input.GetKeyDown(KeyCode.M))
             {
-                Win(); // todo debug
+                Win();
             }
         }
 
@@ -279,6 +286,8 @@ namespace GGJ2023.Level
                 {
                     SownAt(Player.CellPos, TileObjectsReferences.madWillow);
                 }
+                
+                UIManager.HandleInput();
             }
 
             if (Input.GetKeyDown(KeyCode.N) && isWon)

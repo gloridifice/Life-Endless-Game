@@ -8,6 +8,8 @@ namespace GGJ2023.UI
 {
     public class MainMenuManager : MonoBehaviour
     {
+        public static MainMenuManager Instance { get; private set; }
+
         Camera camera;
         private Vector3 lastMousePos = Vector3.zero;
         public bool controlAble = true;
@@ -23,8 +25,11 @@ namespace GGJ2023.UI
         public bool isInfoOpen;
         public bool isSettingsOpen;
 
+        public SoundSource clickSoundSource = new SoundSource("effect","click");
+
         private void Awake()
         {
+            Instance = this;
             camera = Camera.main;
             defaultCamPos = camera.transform.localPosition;
             infoPanel.alpha = 0;

@@ -40,7 +40,7 @@ namespace GGJ2023.UI
 
         private void Update()
         {
-            HandleInput();
+            
         }
 
         public void InitUI(LevelManager levelManager)

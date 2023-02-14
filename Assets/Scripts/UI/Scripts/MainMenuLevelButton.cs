@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using GGJ2023;
 using GGJ2023.Audio;
+using GGJ2023.UI;
 using TMPro;
 using UnityEngine;
 
@@ -51,7 +52,7 @@ public class MainMenuLevelButton : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        AudioManager.Instance.Play("effect","click");
+        MainMenuManager.Instance.clickSoundSource.Play();
         outTwn.Pause();
         inTwn.Restart();
     }
