@@ -78,7 +78,7 @@ namespace GGJ2023.UI
 
             string index = SceneManager.GetActiveScene().name.Replace("S", "");
             int a = int.Parse(index);
-            if (a == 19)
+            if (a == 24)
             {
                 thanksPanel.gameObject.SetActive(true);
                 nextLevelButton.gameObject.SetActive(false);
@@ -89,12 +89,12 @@ namespace GGJ2023.UI
         {
             string index = SceneManager.GetActiveScene().name.Replace("S", "");
             int a = int.Parse(index);
-            GameManager.instance.LoadLevel(a + 1);
+            GameManager.Instance.LoadLevel(a + 1);
         }
 
         public void ReturnToTile()
         {
-            GameManager.instance.LoadMainMenu();
+            GameManager.Instance.LoadMainMenu();
         }
         #region Flower
 

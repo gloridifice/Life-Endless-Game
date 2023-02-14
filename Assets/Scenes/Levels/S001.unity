@@ -944,7 +944,7 @@ PrefabInstance:
     - target: {fileID: 5946525954668814558, guid: 4d12df1dfec5cda448c7aece58ee3fdb,
         type: 3}
       propertyPath: enterText
-      value: "\u63A7\u5236\u98CE\u5411\u4F7F\u98CE\u6EDA\u8349\u79FB\u52A8\uFF0C\u5728\u66F4\u591A\u7684\u683C\u5B50\u4E0A\u6563\u64AD\u79CD\u5B50"
+      value: "<style=\"hlt\">WASD\u952E</style>\u63A7\u5236\u98CE\u5411\u4F7F<style=\"hlt\">\u98CE\u6EDA\u8349</style>\u79FB\u52A8\uFF0C\u5176\u79FB\u52A8\u8FC7\u7684\u5730\u65B9\u4F1A\u79CD\u4E0B\u82B1\u6735"
       objectReference: {fileID: 0}
     - target: {fileID: 5946525954668814558, guid: 4d12df1dfec5cda448c7aece58ee3fdb,
         type: 3}

@@ -8,43 +8,32 @@ namespace GGJ2023.Audio
     public class AudioPool : MonoBehaviour
     {
         public int size = 24;
-        private Stack<AudioSource> pool;
+        private Stack<AudioController> pool;
         private void Awake()
         {
-            pool = new Stack<AudioSource>();
+            pool = new Stack<AudioController>();
             for (int i = 0; i < size; i++)
             {
                 Push(CreateNewSource());
             }
         }
         
-        public void PutAudio(AudioClip audioClip, AudioPlayData data)
+        public AudioController PutAudio(AudioClip audioClip, AudioPlayData data)
         {
-            AudioSource audioSource = Pop();
-            audioSource.gameObject.SetActive(true);
-            audioSource.clip = audioClip;
-            audioSource.volume = data.volume;
-            audioSource.pitch = data.pitch;
-            audioSource.loop = data.loop;
-            audioSource.outputAudioMixerGroup = data.mixerGroup;
-            audioSource.Play();
-            StartCoroutine(WaitToPush(audioClip.length, audioSource));
+            AudioController controller = Pop();
+            controller.gameObject.SetActive(true);
+            controller.Play(audioClip, data);
+            return controller;
         }
 
-        public IEnumerator WaitToPush(float time, AudioSource source)
+        public void Push(AudioController controller)
         {
-            yield return new WaitForSeconds(time);
-            source.gameObject.SetActive(false);
-            Push(source);
+            controller.gameObject.SetActive(false);
+            pool.Push(controller);
         }
-
-        public void Push(AudioSource source)
+        public AudioController Pop()
         {
-            pool.Push(source);
-        }
-        public AudioSource Pop()
-        {
-            if (pool.TryPop(out AudioSource source))
+            if (pool.TryPop(out AudioController source))
             {
                 return source;
             }
@@ -55,14 +44,15 @@ namespace GGJ2023.Audio
             }
         }
 
-        public AudioSource CreateNewSource()
+        public AudioController CreateNewSource()
         {
             GameObject item = new GameObject();
             item.transform.parent = transform;
             AudioSource source= item.AddComponent<AudioSource>();
-            source.playOnAwake = false;
+            AudioController controller= item.AddComponent<AudioController>();
+            controller.Init(source);
             item.SetActive(false);
-            return source;
+            return controller;
         }
     }
 }

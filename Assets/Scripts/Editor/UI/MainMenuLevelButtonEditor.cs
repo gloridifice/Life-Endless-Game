@@ -18,7 +18,8 @@ namespace GGJ2023.UI
             Undo.RecordObject(button.CountText, "descriptive name of this operation 1");
 
             button.level = EditorGUILayout.IntField("Level", button.level);
-            button.CountText.text = button.level.ToString();
+            button.levelIndexName = EditorGUILayout.TextField("Level Index Name", button.levelIndexName);
+            button.CountText.text = button.levelIndexName;
             
             EditorUtility.SetDirty(button);
             EditorUtility.SetDirty(button.CountText);

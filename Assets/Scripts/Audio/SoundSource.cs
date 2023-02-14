@@ -7,20 +7,46 @@ namespace GGJ2023.Audio
         private string dbName;
         private string aName;
         public bool isPlaying;
+        public AudioController currentAudioController;
+        private AudioPlayData.Builder playData;
         private AudioManager AudioManager => AudioManager.Instance;
-        public SoundSource(string dbName, string aName)
+        public SoundSource(string dbName, string aName, AudioPlayData.Builder playData = null)
         {
             this.dbName = dbName;
             this.aName = aName;
+            this.playData = playData;
+            
+            playData = playData ?? new AudioPlayData.Builder();
         }
         public void Play()
         {
-            if (!isPlaying)
+            if (!isPlaying && currentAudioController == null)
             {
-                AudioData data = AudioManager.Play(dbName, aName);
+                AudioController controller = AudioManager.Play(dbName, aName, playData);
+                currentAudioController = controller;
                 isPlaying = true;
-                AudioManager.StartCoroutine(AudioManager.WaitForSourceComplete(this, data.audioClip.length));
+                controller.onDie += OnControllerDie;
             }
+        }
+
+        public void Stop()
+        {
+            if (isPlaying)
+            {
+                if (currentAudioController != null)
+                {
+                    currentAudioController.Stop();
+                }
+                else
+                {
+                    isPlaying = false;
+                }
+            }
+        }
+        void OnControllerDie()
+        {
+            this.isPlaying = false;
+            currentAudioController = null;
         }
     }
 }

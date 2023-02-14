@@ -5,7 +5,7 @@ namespace GGJ2023.Audio
     public class AudioPlayData
     {
         public float volume, pitch;
-        public bool loop;
+        public bool loop, fade, stopOnSceneChange;
         public AudioMixerGroup mixerGroup;
 
         private AudioPlayData(Builder builder)
@@ -14,19 +14,23 @@ namespace GGJ2023.Audio
             this.pitch = builder.pitch;
             this.loop = builder.loop;
             this.mixerGroup = builder.mixerGroup;
+            this.fade = builder.fade;
+            this.stopOnSceneChange = builder.stopOnSceneChange;
+
         }
         public class Builder
         {
             public float volume, pitch;
-            public bool loop;
+            public bool loop, fade, stopOnSceneChange;
             public AudioMixerGroup mixerGroup;
 
-            public Builder(float volume, float pitch, bool loop, AudioMixerGroup group)
+            public Builder(float volume, float pitch, bool loop, AudioMixerGroup group, bool fade)
             {
                 this.volume = volume;
                 this.pitch = pitch;
                 this.loop = loop;
                 this.mixerGroup = group;
+                this.fade = fade;
             }
 
             public Builder()
@@ -34,6 +38,8 @@ namespace GGJ2023.Audio
                 volume = 1;
                 pitch = 1;
                 loop = false;
+                fade = false;
+                stopOnSceneChange = true;
             }
             public Builder Volume(float value)
             {
@@ -55,6 +61,16 @@ namespace GGJ2023.Audio
             public Builder MixerGroup(AudioMixerGroup group)
             {
                 this.mixerGroup = group;
+                return this;
+            }
+            public Builder Fade(bool doFade)
+            {
+                this.fade = doFade;
+                return this;
+            }
+            public Builder StopOnSceneChanged(bool stopOnChanged)
+            {
+                this.stopOnSceneChange = stopOnChanged;
                 return this;
             }
             public AudioPlayData build(){

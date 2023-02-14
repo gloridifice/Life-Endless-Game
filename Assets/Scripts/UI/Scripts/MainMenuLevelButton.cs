@@ -3,18 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using GGJ2023;
+using GGJ2023.Audio;
 using TMPro;
 using UnityEngine;
 
 public class MainMenuLevelButton : MonoBehaviour
 {
-    [HideInInspector]
-    public int level;
+    [HideInInspector] public int level;
+
+    [HideInInspector] public string levelIndexName;
 
     public Transform circle0;
     public Transform circle1;
     private TMP_Text countText;
-    public AudioSource audioSource;
 
     private Tweener inTwn, outTwn;
     public TMP_Text CountText
@@ -40,7 +41,7 @@ public class MainMenuLevelButton : MonoBehaviour
         outTwn.SetEase(Ease.InOutQuart);
         inTwn.Pause();
         outTwn.Pause();
-        audioSource.volume = 0.2f;
+        
     }
 
     private void OnMouseDown()
@@ -50,7 +51,7 @@ public class MainMenuLevelButton : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        audioSource.Play();
+        AudioManager.Instance.Play("effect","click");
         outTwn.Pause();
         inTwn.Restart();
     }

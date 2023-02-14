@@ -25,11 +25,14 @@ namespace GGJ2023
                 instance = value;
             }
         }
-        public static GameManager instance;
+        private static GameManager instance;
         public bool assetsLoaded = false;
         public static Dictionary<string, RegistryTileObject> registryTileObjects;
         public Action onAssetsLoaded = () => {};
         public List<AssetReference> assetsToLoad;
+        public bool isInLevel;
+        public int currentLevelIndex;
+        public SettingsUI settingsUI;
 
         [HideInInspector]
         public Material witheredSpriteMaterial;
@@ -45,7 +48,8 @@ namespace GGJ2023
             }
             if (Instance != this)
             {
-                Destroy(this);
+                DestroyImmediate(gameObject);
+                return;
             }
             
             if (registryTileObjects == null)
@@ -59,6 +63,7 @@ namespace GGJ2023
             }
 
             SceneManager.activeSceneChanged += OnSceneChanged;
+            settingsUI.Init();
         }
 
         public void OnSceneChanged(Scene last, Scene current)
@@ -134,10 +139,10 @@ namespace GGJ2023
                 }
             }
 
-            //todo 退出到主菜单
+            //打开设置
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                LoadMainMenu();
+                SwitchSettingsPanel();
             }
             //重开关卡
             if (Input.GetKeyDown(KeyCode.R))
@@ -154,6 +159,7 @@ namespace GGJ2023
         public void LoadScene(string sceneName)
         {
             GameObject transObj = Instantiate(transitionPrefab);
+            settingsUI.CloseUI();
             if (transObj.TryGetComponent(out Transition transition))
             {
                 transition.TransitionOut();
@@ -172,6 +178,9 @@ namespace GGJ2023
         {
             string levelIndex = String.Format("{0,18:000}", level);
             string levelIndex1= levelIndex.Replace( " ", "" );
+            isInLevel = true;
+            currentLevelIndex = level;
+            settingsUI.ableReturnToTitleButton = true;
             LoadScene("S" + levelIndex1);
         }
 
@@ -182,9 +191,16 @@ namespace GGJ2023
 
         public void LoadMainMenu()
         {
-            SceneManager.LoadScene(0);
+            isInLevel = false;
+            currentLevelIndex = -1;
+            settingsUI.ableReturnToTitleButton = false;
+            LoadScene("MainMenu");
         }
 
+        public void SwitchSettingsPanel()
+        {
+            settingsUI.SwitchUI();
+        }
         #endregion
     }
 }

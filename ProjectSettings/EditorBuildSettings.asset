@@ -9,80 +9,80 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/MainMeun.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: cea530d98ca322747be5db0380caaeb1
   - enabled: 1
-    path: Assets/Scenes/New Levels/S001.unity
-    guid: 7cdc549318c45044c99e64a7122d1e91
+    path: Assets/Scenes/Levels/S001.unity
+    guid: ae3d27e1af4886d41a9028c1765acdb2
   - enabled: 1
-    path: Assets/Scenes/New Levels/S002.unity
-    guid: 843475cdeb2204b4280b9122c26973c0
+    path: Assets/Scenes/Levels/S002.unity
+    guid: fc389d8721b5e8c4c9cabf0b70025ac0
   - enabled: 1
-    path: Assets/Scenes/New Levels/S003.unity
-    guid: b71f42f2a82214145ad09923d2725402
+    path: Assets/Scenes/Levels/S003.unity
+    guid: 23f40208a6c504e4da0a6ee48bb391bf
   - enabled: 1
-    path: Assets/Scenes/New Levels/S004.unity
-    guid: faea8e90cd1486544a4f9e400923b25f
+    path: Assets/Scenes/Levels/S004.unity
+    guid: 3d8ef2c41a0a39d44a835bd9c264f997
   - enabled: 1
-    path: Assets/Scenes/New Levels/S005.unity
-    guid: a36a455a940bf9447a632925db141457
+    path: Assets/Scenes/Levels/S005.unity
+    guid: c9c2f9f5411047845a11c8dd9c05fb22
   - enabled: 1
-    path: Assets/Scenes/New Levels/S006.unity
-    guid: 1538fc6d7b0a577419f86d25d5fcba3d
+    path: Assets/Scenes/Levels/S006.unity
+    guid: 8559249cae9351f488e7fa1ffd35e9c9
   - enabled: 1
-    path: Assets/Scenes/New Levels/S007.unity
-    guid: 669557e1706f51646ad5244fbfb87902
+    path: Assets/Scenes/Levels/S007.unity
+    guid: 12c5127795eca4e4795307f86e4d6bac
   - enabled: 1
-    path: Assets/Scenes/New Levels/S008.unity
-    guid: 907001bacf4e8084daf550b72ffdab93
+    path: Assets/Scenes/Levels/S008.unity
+    guid: d845c6f22baa7ae4d909ee57899f962e
   - enabled: 1
-    path: Assets/Scenes/New Levels/S009.unity
-    guid: 11cd33022065f59419dc0e8c3b255cdd
+    path: Assets/Scenes/Levels/S009.unity
+    guid: 32a70644a3c14e34c95fe76be4debdbd
   - enabled: 1
-    path: Assets/Scenes/New Levels/S010.unity
-    guid: 012b089a71e58c74caa6cc7b5323a337
+    path: Assets/Scenes/Levels/S010.unity
+    guid: 36c57fb52abe28d44b3d29ec09976b34
   - enabled: 1
-    path: Assets/Scenes/New Levels/S011.unity
-    guid: 5d6c13641a1d5b84693c2d6b0fa69676
+    path: Assets/Scenes/Levels/S011.unity
+    guid: 7677c87903acd1b48956df335b70130d
   - enabled: 1
-    path: Assets/Scenes/New Levels/S012.unity
-    guid: f696da09f4d483348a8753aeb7c323cf
+    path: Assets/Scenes/Levels/S012.unity
+    guid: 0af5b11ebd80b3c4f8d814587d2aee80
   - enabled: 1
-    path: Assets/Scenes/New Levels/S013.unity
-    guid: c87cbbf7fad011244b7f2cdb4c52b009
+    path: Assets/Scenes/Levels/S013.unity
+    guid: 167986d5f600e1448a2a9865a544653f
   - enabled: 1
-    path: Assets/Scenes/New Levels/S014.unity
-    guid: 4d82b23355a0ebc489860d8adbb97db4
+    path: Assets/Scenes/Levels/S014.unity
+    guid: 02836959722cb2b4cabe1253a2a6e972
   - enabled: 1
-    path: Assets/Scenes/New Levels/S015.unity
-    guid: b8336aa63fb4e014f9a873ceda08d5f7
+    path: Assets/Scenes/Levels/S015.unity
+    guid: 6092f7978269a7c4bb54f28de7ceb943
   - enabled: 1
-    path: Assets/Scenes/New Levels/S016.unity
-    guid: e3b65d143b928e24db2879881b8da781
+    path: Assets/Scenes/Levels/S016.unity
+    guid: 9b476b398117c8647bea3243f4cfc3ee
   - enabled: 1
-    path: Assets/Scenes/New Levels/S017.unity
-    guid: e6bb7e6b101650d4d9618d9acc05c11a
+    path: Assets/Scenes/Levels/S017.unity
+    guid: f228a79b38c628240ba72863849419b2
   - enabled: 1
-    path: Assets/Scenes/New Levels/S018.unity
-    guid: c3ed83ee2f5157644b1451ce78674254
+    path: Assets/Scenes/Levels/S018.unity
+    guid: 7d69be8c993f4344e92aadc9d6bd255c
   - enabled: 1
-    path: Assets/Scenes/New Levels/S019.unity
-    guid: af05038078c485e46a15bf8645ed0c15
+    path: Assets/Scenes/Levels/S019.unity
+    guid: a2ad0c9e8bf113a4e85416dd6f34277b
   - enabled: 1
-    path: Assets/Scenes/New Levels/S020.unity
-    guid: b914a047a525bd240a3a7d6c3025758a
+    path: Assets/Scenes/Levels/S020.unity
+    guid: 37970e8b0a028584f8dbdd58cf8192ba
   - enabled: 1
-    path: Assets/Scenes/New Levels/S021.unity
-    guid: 010b3a4bf8bdaab45832321d9ef672a4
+    path: Assets/Scenes/Levels/S021.unity
+    guid: a184041a76497a14caad3277a6dc82c1
   - enabled: 1
-    path: Assets/Scenes/New Levels/S022.unity
-    guid: a8925eacc66d0f94183eb67fc4bed5d8
+    path: Assets/Scenes/Levels/S022.unity
+    guid: 712a9feda81c3944ca94c484a53eff4a
   - enabled: 1
-    path: Assets/Scenes/New Levels/S023.unity
-    guid: 2cd2b77a9fee2aa42b5a4e9843b6b0ae
+    path: Assets/Scenes/Levels/S023.unity
+    guid: b5fb8a458dbc85a40bca85caed572f58
   - enabled: 1
-    path: Assets/Scenes/New Levels/S024.unity
-    guid: a56bc8ed502511544b2e090a09b959e2
+    path: Assets/Scenes/Levels/S024.unity
+    guid: 6caa762f0a273b241875a263a2940007
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: d4cc784a13f408548984f85047c96a97,
       type: 2}

@@ -19,7 +19,7 @@ namespace GGJ2023.UI
         private Vector3 defaultCamPos;
 
         public CanvasGroup infoPanel;
-        public CanvasGroup settingsPanel;
+
         public bool isInfoOpen;
         public bool isSettingsOpen;
 
@@ -28,8 +28,6 @@ namespace GGJ2023.UI
             camera = Camera.main;
             defaultCamPos = camera.transform.localPosition;
             infoPanel.alpha = 0;
-            settingsPanel.alpha = 0;
-            settingsPanel.gameObject.SetActive(false);
         }
 
         private void Update()
@@ -93,35 +91,26 @@ namespace GGJ2023.UI
             }
             isInfoOpen = !isInfoOpen;
         }
-
-        public void SwitchSettings()
-        {
-            if (isSettingsOpen)
-            {
-                Tweener tweener = settingsPanel.DOFade(0f, 0.5f);
-                tweener.onKill += () => settingsPanel.gameObject.SetActive(false);
-            }
-            else
-            {
-                settingsPanel.gameObject.SetActive(true);
-                settingsPanel.DOFade(1f, 0.5f);
-            }
-            isSettingsOpen = !isSettingsOpen;
-        }
+        
 
         public void StartGame()
         {
-            GameManager.instance.LoadLevel(1);
+            GameManager.Instance.LoadLevel(1);
         }
 
         public void ExitGame()
         {
-            GameManager.instance.ExitGame();
+            GameManager.Instance.ExitGame();
         }
 
         public void ChangeVolume(float value)
         {
             AudioListener.volume = value;
+        }
+
+        public void SwitchSettingsPanel()
+        {
+            GameManager.Instance.SwitchSettingsPanel();
         }
     }
 }

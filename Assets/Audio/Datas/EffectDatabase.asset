@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EffectDatabase
   m_EditorClassIdentifier: 
   name: effect
-  volume: 1
+  volume: 0.5
   pitch: 1
   groups:
   - groupName: wind
@@ -184,6 +184,6 @@ MonoBehaviour:
     - volume: 1
       pitch: 1
       audioClip: {fileID: 8300000, guid: d23be96f50be83340ae49d003faa086d, type: 3}
-    lastPlayIndex: 1
+    lastPlayIndex: 0
   mixerGroup: {fileID: -5764349527861456817, guid: 91449fe15bad3e640b41b05ffab63816,
     type: 2}
