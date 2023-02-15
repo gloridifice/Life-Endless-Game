@@ -51,7 +51,7 @@ MonoBehaviour:
     groupLoop: 1
     groupPlayMode: 0
     groupData:
-    - volume: 0.2
+    - volume: 0.4
       pitch: 1
       audioClip: {fileID: 8300000, guid: a5507e18197c72f4fba842cc32c19920, type: 3}
     lastPlayIndex: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
     groupLoop: 1
     groupPlayMode: 0
     groupData:
-    - volume: 0.2
+    - volume: 0.4
       pitch: 1
       audioClip: {fileID: 8300000, guid: 515940bbec45c9345b5b47f536abe028, type: 3}
     lastPlayIndex: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
     groupLoop: 1
     groupPlayMode: 0
     groupData:
-    - volume: 0.2
+    - volume: 0.4
       pitch: 1
       audioClip: {fileID: 8300000, guid: 38aa362b1b279ca48bbe6070431f14fe, type: 3}
     lastPlayIndex: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
     groupLoop: 1
     groupPlayMode: 0
     groupData:
-    - volume: 0.2
+    - volume: 0.4
       pitch: 1
       audioClip: {fileID: 8300000, guid: 79ef996f4da36bb4a894d613a5c3f9bf, type: 3}
     lastPlayIndex: 0
