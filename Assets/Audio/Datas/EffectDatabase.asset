@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EffectDatabase
   m_EditorClassIdentifier: 
   name: effect
-  volume: 0.5
+  volume: 0.35
   pitch: 1
   groups:
   - groupName: wind
@@ -96,7 +96,7 @@ MonoBehaviour:
       audioClip: {fileID: 8300000, guid: c266be2bb95ffb247855874fc7dc5f25, type: 3}
     lastPlayIndex: 0
   - groupName: plant_grow
-    groupVolume: 1
+    groupVolume: 0.6
     groupPitch: 1
     groupLoop: 0
     groupPlayMode: 1

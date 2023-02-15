@@ -14,7 +14,7 @@ namespace GGJ2023.TileObject
             foreach (TileObject tileObject in others)
             {
                 if (tileObject.Is(TileObjectsReferences.excavatorForward)||
-                    (tileObject.Is(TileObjectsReferences.fire) && !IsMature))
+                    (tileObject.Is(TileObjectsReferences.fire) && !(IsMature && !IsJustMature)))
                 {
                     Die(levelManager);
                 }

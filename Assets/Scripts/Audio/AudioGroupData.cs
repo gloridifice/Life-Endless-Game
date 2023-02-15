@@ -14,14 +14,11 @@ namespace GGJ2023.Audio
         public PlayModeType groupPlayMode = PlayModeType.Normal;
 
         public List<AudioData> groupData;
-        public int dataCount
-        {
-            get { return groupData.Count; }
-        }
+        public int DataCount => groupData.Count;
 
         // -- 非储存字段
         [HideInInspector]
-        public int lastPlayIndex = -1;
+        private int lastPlayIndex = -1;
 
         public AudioGroupData(string name)
         {
@@ -47,9 +44,10 @@ namespace GGJ2023.Audio
             else
             {
                 lastPlayIndex++;
-                if (lastPlayIndex >= dataCount)
+                lastPlayIndex %= DataCount;
+                if (lastPlayIndex >= DataCount)
                 {
-                    lastPlayIndex -= dataCount;
+                    lastPlayIndex -= DataCount;
                 }
             }
 
@@ -64,7 +62,7 @@ namespace GGJ2023.Audio
 
         public AudioData GetNextAudioData()
         {
-            if (dataCount > 0)
+            if (DataCount > 0)
             {
                 int index = MoveNextIndex();
                 return groupData[index];

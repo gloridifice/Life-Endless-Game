@@ -41,7 +41,10 @@ namespace GGJ2023.Audio
             }
             if (lifeCountDown == 0)
             {
-                Stop();
+                if (playData.loop)
+                {
+                    lifeCountDown = audioSource.clip.length;
+                }else Stop();
             }
         }
 

@@ -11,7 +11,8 @@ namespace GGJ2023.TileObject
         private int dynamicMaxAge;
 
         //public Animator animator;    //动画器
-        public bool IsMature => age == dynamicMaxAge;
+        public bool IsMature => age >= dynamicMaxAge;
+        public bool IsJustMature => age == dynamicMaxAge;
         private SpriteRenderer spriteRenderer;
         public SpriteRenderer SpriteRenderer {
             get{
@@ -50,9 +51,7 @@ namespace GGJ2023.TileObject
             if (!IsMature)
             {
 
-                age = Mathf.Min(age + 1, maxAge);
-                //transform.localScale = (float)(age + 1) / (float)(maxAge + 1) * Vector3.one;
-                //todo 树成长动画
+                age += 1;
                 if (animator != null)
                 {
                     switch (age)
