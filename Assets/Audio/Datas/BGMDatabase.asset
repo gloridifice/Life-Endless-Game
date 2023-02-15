@@ -24,16 +24,16 @@ MonoBehaviour:
     groupData:
     - volume: 1
       pitch: 1
-      audioClip: {fileID: 8300000, guid: 38aa362b1b279ca48bbe6070431f14fe, type: 3}
+      audioClip: {fileID: 0}
     - volume: 1
       pitch: 1
-      audioClip: {fileID: 8300000, guid: 38aa362b1b279ca48bbe6070431f14fe, type: 3}
+      audioClip: {fileID: 0}
     - volume: 1
       pitch: 1
-      audioClip: {fileID: 8300000, guid: 38aa362b1b279ca48bbe6070431f14fe, type: 3}
+      audioClip: {fileID: 0}
     - volume: 1
       pitch: 1
-      audioClip: {fileID: 8300000, guid: 38aa362b1b279ca48bbe6070431f14fe, type: 3}
+      audioClip: {fileID: 0}
     lastPlayIndex: 2
   - groupName: mainmenu
     groupVolume: 1
