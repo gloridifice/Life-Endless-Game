@@ -33,7 +33,7 @@ namespace GGJ2023.TileObject
             AnimatorStateInfo stateinfo = animator.GetCurrentAnimatorStateInfo(0);
 
             //灭火动画结束后，才摧毁物体
-            if (stateinfo.IsName("extinguish") && (stateinfo.normalizedTime > 0.95f))
+            if (stateinfo.IsName("extinguish") && (stateinfo.normalizedTime > 0.8f))
             {
                 if (levelManager.HasAndGetNeighbour8Tiles(CellPos, out List<TileObject[]> list))
                 {

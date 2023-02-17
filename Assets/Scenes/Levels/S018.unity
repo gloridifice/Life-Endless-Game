@@ -3006,6 +3006,11 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[43].second.m_TileObjectToInstantiateIndex
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5946525955709223838, guid: 4d12df1dfec5cda448c7aece58ee3fdb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.08
+      objectReference: {fileID: 0}
     - target: {fileID: 5946525955737237402, guid: 4d12df1dfec5cda448c7aece58ee3fdb,
         type: 3}
       propertyPath: m_fontAsset
@@ -5233,6 +5238,11 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 8345655147251286518, guid: 4d12df1dfec5cda448c7aece58ee3fdb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -24.991028
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d12df1dfec5cda448c7aece58ee3fdb, type: 3}
 --- !u!1001 &2347244876180349231

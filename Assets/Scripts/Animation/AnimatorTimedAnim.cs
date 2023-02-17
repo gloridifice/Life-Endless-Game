@@ -49,6 +49,14 @@ namespace GGJ2023
                     break;
                 }
             }
+            if (name == "extinguish")
+            {
+                length += 0.4f;
+            }
+            if(name == "die")
+            {
+                length += 0.1f;
+            }
             return length;
         }
 
