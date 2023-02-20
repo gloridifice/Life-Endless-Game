@@ -81,10 +81,13 @@ namespace GGJ2023.TileObject
                 {
                     Die(levelManager);  //游戏结束并死亡
                 }
-                else if (collideTile.Is(TileObjectsReferences.excavatorForward) ||
-                    collideTile.Is(TileObjectsReferences.animalBack))
+                else if (collideTile.Is(TileObjectsReferences.animalBack))
                 {
                     Die(levelManager, 2f);  //游戏结束并死亡
+                }
+                else if(collideTile.Is(TileObjectsReferences.excavatorForward))
+                {
+                    Die(levelManager, 1.2f);  //游戏结束并死亡
                 }
             }
         }
