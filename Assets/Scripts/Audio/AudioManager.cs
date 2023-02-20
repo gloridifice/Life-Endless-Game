@@ -24,7 +24,9 @@ namespace GGJ2023.Audio
         private static readonly SoundSource SummerBgmSoundSource = new("bgm", "summer",new AudioPlayData.Builder().Loop(true).Fade(true).StopOnSceneChanged(false));
         private static readonly SoundSource AutumnBgmSoundSource = new("bgm", "autumn",new AudioPlayData.Builder().Loop(true).Fade(true).StopOnSceneChanged(false));
         private static readonly SoundSource WinterBgmSoundSource = new("bgm", "winter",new AudioPlayData.Builder().Loop(true).Fade(true).StopOnSceneChanged(false));
-        readonly SoundSource[] bgmSources = { SpringBgmSoundSource, SummerBgmSoundSource, AutumnBgmSoundSource, WinterBgmSoundSource };
+        private static readonly SoundSource MainMenuBgmSoundSource = new("bgm", "main_menu",new AudioPlayData.Builder().Loop(true).Fade(true).StopOnSceneChanged(false));
+        
+        readonly SoundSource[] bgmSources = { SpringBgmSoundSource, SummerBgmSoundSource, AutumnBgmSoundSource, WinterBgmSoundSource, MainMenuBgmSoundSource };
         
         private void Update()
         {
@@ -39,28 +41,28 @@ namespace GGJ2023.Audio
                 
                 if (levelIndex >= 1 && levelIndex <= 6)
                 {
-                    PlaySeasonSource(SummerBgmSoundSource);
+                    PlayBGMSource(SummerBgmSoundSource);
                 }
                 else if (levelIndex >= 7 && levelIndex <= 13)
                 {
-                    PlaySeasonSource(AutumnBgmSoundSource);
+                    PlayBGMSource(AutumnBgmSoundSource);
                 }
                 else if (levelIndex >= 14 && levelIndex <= 18)
                 {
-                    PlaySeasonSource(WinterBgmSoundSource);
+                    PlayBGMSource(WinterBgmSoundSource);
                 }
                 else if (levelIndex >= 19 && levelIndex <= 24)
                 {
-                    PlaySeasonSource(SpringBgmSoundSource);
+                    PlayBGMSource(SpringBgmSoundSource);
                 }
             }
             else
             {
-                PlaySeasonSource(AutumnBgmSoundSource);
+                PlayBGMSource(MainMenuBgmSoundSource);
             }
         }
 
-        void PlaySeasonSource(SoundSource seasonSource)
+        void PlayBGMSource(SoundSource seasonSource)
         {
             if (!seasonSource.isPlaying)
             {

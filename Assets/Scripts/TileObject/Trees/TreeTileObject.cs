@@ -1,3 +1,4 @@
+using GGJ2023.Event;
 using GGJ2023.Level;
 using GGJ2023.MapTile;
 using UnityEngine;
@@ -38,7 +39,7 @@ namespace GGJ2023.TileObject
             }
             //transform.localScale = (float)(age + 1) / (float)(maxAge + 1) * Vector3.one;
         }
-
+        [Priority(PriorityType.High)]
         public override void OnRoundExecute(LevelManager levelManager)
         {
             if (levelManager.HasAndGetMapTile(CellPos, out MapTile.MapTile mapTile))

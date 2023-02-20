@@ -34,17 +34,15 @@ MonoBehaviour:
     - volume: 1
       pitch: 1
       audioClip: {fileID: 0}
-    lastPlayIndex: 2
-  - groupName: mainmenu
-    groupVolume: 1
+  - groupName: main_menu
+    groupVolume: 0.6
     groupPitch: 1
     groupLoop: 1
     groupPlayMode: 0
     groupData:
-    - volume: 1
+    - volume: 0.6
       pitch: 1
-      audioClip: {fileID: 8300000, guid: 356cfa18558801b4bac61df58ff7eaa6, type: 3}
-    lastPlayIndex: 0
+      audioClip: {fileID: 8300000, guid: 314ec4942bada0b41973deacddb44ee9, type: 3}
   - groupName: spring
     groupVolume: 1
     groupPitch: 1
@@ -54,7 +52,6 @@ MonoBehaviour:
     - volume: 0.4
       pitch: 1
       audioClip: {fileID: 8300000, guid: a5507e18197c72f4fba842cc32c19920, type: 3}
-    lastPlayIndex: 0
   - groupName: summer
     groupVolume: 1
     groupPitch: 1
@@ -64,7 +61,6 @@ MonoBehaviour:
     - volume: 0.4
       pitch: 1
       audioClip: {fileID: 8300000, guid: 515940bbec45c9345b5b47f536abe028, type: 3}
-    lastPlayIndex: 0
   - groupName: autumn
     groupVolume: 1
     groupPitch: 1
@@ -74,7 +70,6 @@ MonoBehaviour:
     - volume: 0.4
       pitch: 1
       audioClip: {fileID: 8300000, guid: 38aa362b1b279ca48bbe6070431f14fe, type: 3}
-    lastPlayIndex: 0
   - groupName: winter
     groupVolume: 1
     groupPitch: 1
@@ -84,6 +79,5 @@ MonoBehaviour:
     - volume: 0.4
       pitch: 1
       audioClip: {fileID: 8300000, guid: 79ef996f4da36bb4a894d613a5c3f9bf, type: 3}
-    lastPlayIndex: 0
   mixerGroup: {fileID: -5609090282639181202, guid: 91449fe15bad3e640b41b05ffab63816,
     type: 2}
