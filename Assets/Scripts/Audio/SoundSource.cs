@@ -25,6 +25,7 @@ namespace GGJ2023.Audio
                 AudioController controller = AudioManager.Play(dbName, aName, playData);
                 currentAudioController = controller;
                 isPlaying = true;
+                currentAudioController.onDie += OnControllerDie;
             }
         }
 
@@ -34,7 +35,6 @@ namespace GGJ2023.Audio
             {
                 if (currentAudioController != null)
                 {
-                    currentAudioController.onDie += OnControllerDie;
                     currentAudioController.Stop();
                 }
                 else

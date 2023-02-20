@@ -1132,6 +1132,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5946525954668814558, guid: 4d12df1dfec5cda448c7aece58ee3fdb,
         type: 3}
+      propertyPath: enterText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5946525954668814558, guid: 4d12df1dfec5cda448c7aece58ee3fdb,
+        type: 3}
       propertyPath: levelName
       value: "\u56DB\u9762\u53D7\u654C"
       objectReference: {fileID: 0}
